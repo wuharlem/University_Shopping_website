@@ -1,6 +1,21 @@
-<title>NTU Shopping</title>
 <html>
-<body background="./ntu_shopping_img/ntu_shopping_loginpage.jpg" style="width: 1910px ;height: 1060px">
+<head>
+<title>NTU Shopping</title>
+<script src="./js/jquery-2.2.3.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script src="./js/jump.js"></script>
+<script>
+    $(document).ready(function(){
+    $("#background").fadeIn(1500);
+    });
+</script>
+</head>
+<body>
+	<div>
+		<img id="background" src="./ntu_shopping_img/ntu_shopping_background.png" style="display: none;">
+		<img src="./ntu_shopping_img/ntu_shopping_loginpage.png" style="position: absolute;top: 0px ;left:0px">
+	</div>
 	<div class="input" id="account">
 		<input type="text" placeholder="ACCOUNT" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact">
 	</div>
