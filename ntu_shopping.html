@@ -7,13 +7,17 @@
 <script src="./js/jump.js"></script>
 <script>
     $(document).ready(function(){
-    $("#background").fadeIn(1500);
+    $("#ntu").fadeIn(1500);
+    $("#ntnu").delay(500).fadeIn(1500);
+    $("#ntust").delay(1000).fadeIn(1500);
     });
 </script>
 </head>
 <body>
 	<div>
-		<img id="background" src="./ntu_shopping_img/ntu_shopping_background.png" style="display: none;">
+		<img id="ntu" src="./ntu_shopping_img/ntu_shopping_background_ntu.png" style="display: none;position: absolute;top: 0px ;left:0px">
+		<img id="ntnu" src="./ntu_shopping_img/ntu_shopping_background_ntnu.png" style="display: none;position: absolute;top: 0px ;left:0px">
+		<img id="ntust" src="./ntu_shopping_img/ntu_shopping_background_ntust.png" style="display: none;position: absolute;top: 0px ;left:0px">
 		<img src="./ntu_shopping_img/ntu_shopping_loginpage.png" style="position: absolute;top: 0px ;left:0px">
 	</div>
 	<div class="input" id="account">
