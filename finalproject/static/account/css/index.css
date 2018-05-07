@@ -6,39 +6,54 @@
 
 .search_bar{
   margin: 0px -8px;
-  height: 182.5px;
+  height: 192.5px;
   background-color: #761822;
 }
 
 .bar_title{
   width: 434px;
+  height: 50px;
   margin: 0px -8px;
   background-color: #4D060C;
 }
 
-ul {
-    margin: 0px -8px;
-    padding: 0px;
-    width: 434px;
-    
+table{
+  position: absolute;
+  top: 283px;
+  left: 433px;
+  border-spacing: 49px;
 }
-li {
+th{
+  width: 284px;
+  height: 182.5px;
+  background-color: #999999; 
+}
+th:hover{
+  background-color: #4D060C;
+  opacity:0.8;
+}
+
+
+
+ul.left_bar {
+  margin: 0px -8px;
+  padding: 0px;
+  width: 434px;
+}
+ul.left_bar > li {
   display: block;
   height: 50px;
   padding: 0px 0px;
   background-color: #94333D;
 }
 
-li.light {
+ul.left_bar > li.light {
     background-color: #94333D;
 }
-li.heavy{
+ul.left_bar > li.heavy{
     background-color: #761822;
 }
-
-/* Change the link color on hover */
-li:hover {
+ul.left_bar > li:hover {
     background-color: #4D060C;
     height: 50px;
-    color: white;
-}
+  }
