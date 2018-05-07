@@ -1,0 +1,43 @@
+{% load static %}
+{% load staticfiles %}
+<html>
+<head>
+  <title>NTU Shoppinggghhh</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static 'account/css/ntu_shopping.css'%}">
+  <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
+  <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'account/js/jquery.cookie.js'%}"></script>
+  <script src="{% static 'account/js/jump.js'%}"></script>
+  <script>
+    $(document).ready(function(){
+    $("#ntu").fadeIn(1500);
+    $("#ntnu").delay(500).fadeIn(1500);
+    $("#ntust").delay(1000).fadeIn(1500);
+    });
+</script>
+</head>
+<body>
+	<div>
+		<img id="ntu" src="{% static 'account/img/ntu_shopping_background_ntu.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
+		<img id="ntnu" src="{% static 'account/img/ntu_shopping_background_ntnu.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
+		<img id="ntust" src="{% static 'account/img/ntu_shopping_background_ntust.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
+		<img src="{% static 'account/img/ntu_shopping_loginpage.png'%}" style="position: absolute;top: 0px ;left:0px">
+	</div>
+	<div class="input" id="account">
+		<input type="text" placeholder="ACCOUNT" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact">
+	</div>
+	<div class="input" id="password">
+		<input type="password" placeholder="PASSWORD" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact">
+	</div>
+	<div class="button" id="login">
+		<input type="button" style="width:605px;height:105px;background-image:url('{% static 'account/img/ntu_shopping_botton_login.jpg'%}');">
+	</div>
+	<div class="button" id="create">
+		<input type="button" style="width:280px;height:105px;background-image:url('{% static 'account/img/ntu_shopping_smallbutton_create.jpg'%}');">
+	</div>
+	<div class="button" id="forget">
+		<input type="button" style="width:280px;height:105px;background-image:url('{% static 'account/img/ntu_shopping_smallbutton_forget.jpg'%}');">
+	</div>
+</body>
+</htm

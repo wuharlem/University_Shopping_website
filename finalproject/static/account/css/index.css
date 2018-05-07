@@ -1,0 +1,44 @@
+.header{
+  margin: -8px;
+  height: 100px;
+  background-color: #4D060C;
+}
+
+.search_bar{
+  margin: 0px -8px;
+  height: 182.5px;
+  background-color: #761822;
+}
+
+.bar_title{
+  width: 434px;
+  margin: 0px -8px;
+  background-color: #4D060C;
+}
+
+ul {
+    margin: 0px -8px;
+    padding: 0px;
+    width: 434px;
+    
+}
+li {
+  display: block;
+  height: 50px;
+  padding: 0px 0px;
+  background-color: #94333D;
+}
+
+li.light {
+    background-color: #94333D;
+}
+li.heavy{
+    background-color: #761822;
+}
+
+/* Change the link color on hover */
+li:hover {
+    background-color: #4D060C;
+    height: 50px;
+    color: white;
+}
