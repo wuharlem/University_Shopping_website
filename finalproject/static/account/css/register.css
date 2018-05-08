@@ -1,0 +1,39 @@
+	#account{
+		position:absolute;
+		top:430px;
+		left:150px;
+	}
+	#password{
+		position: absolute;
+		top:580px;
+		left:150px;
+	}
+	#confirm{
+		position: absolute;
+		top:730px;
+		left:150px;
+	}
+	#create{
+		position: absolute;
+		top:877px;
+		left:147px;
+	}
+
+	::-webkit-input-placeholder { /* Chrome */
+		text-align: center;
+		color: ;
+		}
+	:-ms-input-placeholder { /* IE 10+ */
+		text-align: center;
+		color: ;
+		}
+	::-moz-placeholder { /* Firefox 19+ */
+		text-align: center;
+		color: ;
+		opacity: 1;
+		}
+	:-moz-placeholder { /* Firefox 4 - 18 */
+		text-align: center;
+		color: ;
+		opacity: 1;
+	}

@@ -1,13 +1,42 @@
-<!DOCTYPE html>
+{% load static %}
+{% load staticfiles %}
 <html>
 <head>
-	<title>NTU Shopping - register</title>
+  <title>NTU Shopping - login</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static 'account/css/register.css'%}">
+  <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
+  <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'account/js/jquery.cookie.js'%}"></script>
+  <script src="{% static 'account/js/jump.js'%}"></script>
+  <script>
+    $(document).ready(function(){
+    $("#ntu").fadeIn(1000);
+    $("#ntnu").delay(500).fadeIn(1000);
+    $("#ntust").delay(1000).fadeIn(1000);
+    });
+  </script>
 </head>
 <body>
-	<h1>註冊新帳號</h1>
+	<div>
+		<img id="ntu" src="{% static 'account/img/ntu_shopping_background_ntu.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
+		<img id="ntnu" src="{% static 'account/img/ntu_shopping_background_ntnu.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
+		<img id="ntust" src="{% static 'account/img/ntu_shopping_background_ntust.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
+		<img src="{% static 'account/img/ntu_shopping_createpage.png'%}" style="position: absolute;top: 0px ;left:0px">
+	</div>
 	<form action="" method="post"> {% csrf_token %}
-		 {{ form.as_p }}
-		<input type="submit" value="註冊">
+	<div class="input" id="account">
+		<input type="text" name="username" placeholder="ACCOUNT" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact">
+	</div>
+	<div class="input" id="password">
+		<input type="password" name="password" placeholder="PASSWORD" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact">
+	</div>
+	<div class="input" id="confirm">
+		<input type="password" name="password" placeholder="CONFIRM PASSWORD" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact">
+	</div>
+	<div class="button" id="create">
+		<input type="submit" value="" style="width:605px;height:105px;background-image:url('{% static 'account/img/ntu_shopping_button_create.jpg'%}');">
+	</div>
 	</form>
 </body>
 </html>
