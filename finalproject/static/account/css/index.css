@@ -29,8 +29,8 @@ th{
   background-color: #999999; 
 }
 th:hover{
-  background-color: #4D060C;
-  opacity:0.8;
+  background-color: #999999;
+  opacity:0.5;
 }
 
 

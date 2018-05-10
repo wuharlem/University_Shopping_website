@@ -9,12 +9,12 @@
 <body style="width: 1910px ;height: 1060px">
 <div class="header">
   <input type="button" style="position: absolute;top: 21px;left: 1710px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #4D060C";>
-  <input type="button" style="position: absolute;top: 21px;left: 1610px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
-  <input type="button" style="position: absolute;top: 21px;left: 1510px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #4D060C";>
+  <input type="button" onclick="location.href='{% url 'post' username %}';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
+  <input type="button" style="position: absolute;top: 21px;left: 1550px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #4D060C";>
 </div>
 <div class="search_bar">
   <img src="{% static 'account/img/ntu_shopping_logo.png'%}" style="position: absolute;top:170px;left:150px;">
-  <input type="text" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family: Impact ;padding: 15px">
+  <input type="text" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:蘭亭黑-繁;font-weight:900 ;padding: 15px">
   <input type="button" style="position: absolute;top:166px;left:1695px;width:75px;height:50px;border: 0px; background-image:url('{% static 'account/img/ntu_shopping_search_button.png'%}');">
 </div>
 <div class="bar_title">
@@ -42,26 +42,25 @@
 <div>
   <table class="commodity">
     <tr>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
     </tr>
     <tr>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
     </tr>
     <tr>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
-      <th><a href="#"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
+      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
     </tr>
   </table>
 </div>
-<a href="{% url 'logout' %}">登出</a>
 
 </body>
 </html>
