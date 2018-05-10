@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^account/login/$',login, name = "login"),
     url(r'^account/logout/$',logout, name = "logout"),
     url(r'^account/register/$', views.register, name = "register"),
+    url(r'^(?P<username>\w+)/$', views.post, name = "post"),
 ]
