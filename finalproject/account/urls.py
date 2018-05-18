@@ -2,11 +2,13 @@ from django.conf.urls import url
 from . import views  
 # 利用內建的view funciton
 from django.contrib.auth.views import login, logout
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    url(r'^$', views.index, name = "index"),
-    url(r'^account/login/$',login, name = "login"),
-    url(r'^account/logout/$',logout, name = "logout"),
-    url(r'^account/register/$', views.register, name = "register"),
-    url(r'^(?P<username>\w+)/$', views.post, name = "post"),
-]
+	url(r'^$', views.manage, name = "manage"),
+    url(r'^login/$',login, name = "login"),
+    url(r'^logout/$',logout, name = "logout"),
+    url(r'^register/$', views.register, name = "register"),
+    ]
+# ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

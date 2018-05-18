@@ -1,0 +1,23 @@
+{% load static %}
+{% load staticfiles %}
+<html>
+<head>
+  <title>NTU Shopping</title>
+  <meta charset="utf-8">
+  <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
+  <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'account/js/jquery.cookie.js'%}"></script>
+  <script src="{% static 'account/js/jump.js'%}"></script>
+  <script>
+    $(document).ready(function(){
+    $("#cover").fadeIn(2000);
+    });
+</script>
+</head>
+<body background="{% static 'account/img/ntu_shopping_404page.png'%}" style="width: 1910px ;height: 1060px">
+  <div>
+    <img id="cover" src="{% static 'account/img/ntu_shopping_404cover.png'%}" style="position: absolute; top: 0px;left: 0px;display: none;">
+  </div>
+
+</body>
+</html>

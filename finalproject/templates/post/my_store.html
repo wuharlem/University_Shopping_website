@@ -8,25 +8,25 @@
 </head>
 <body style="width: 1910px ;height: 1060px">
 <div class="header">
-  <input type="button" style="position: absolute;top: 21px;left: 1710px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #4D060C";>
-  <input type="button" onclick="location.href='';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
+  <input type="button" onclick="location.href='{% url 'chat_index'  %}';" style="position: absolute;top: 21px;left: 1710px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #4D060C";>
+  <input type="button" onclick="location.href='{% url 'manage' %}';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
   <input type="button" style="position: absolute;top: 21px;left: 1550px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #4D060C";>
 </div>
 <div class="search_bar">
-  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index'  %}';" style="position: absolute;top:170px;left:150px;">
+  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "CP" %}';" style="position: absolute;top:170px;left:150px;">
   <input type="text" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:蘭亭黑-繁;font-weight:900 ;padding: 15px">
   <input type="button" style="position: absolute;top:166px;left:1695px;width:75px;height:50px;border: 0px; background-image:url('{% static 'account/img/ntu_shopping_search_button.png'%}');">
 </div>
 <div class="bar_title">
-  <img src="{% static 'account/img/ntu_shopping_bar14.png'%}">
+   <img src="{% static 'account/img/ntu_shopping_bar14.png'%}">
 </div>
 <div>
 <ul class="left_bar">
   <li class="light"><a href="#"><img src="{% static 'account/img/ntu_shopping_bar15.png'%}" style="width: 300px height:50px"></a></li>
   <li class="heavy"><a href="#"><img src="{% static 'account/img/ntu_shopping_bar16.png'%}"></a></li>
-  <li class="light"><a href="#"><img src="{% static 'account/img/ntu_shopping_bar17.png'%}"></a></li>
+  <li class="light"><a href='{% url 'chat_index'  %}'><img src="{% static 'account/img/ntu_shopping_bar17.png'%}"></a></li>
   <li class="heavy"><a href="{% url 'logout' %}"><img src="{% static 'account/img/ntu_shopping_bar18.png'%}"></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
+  <li class="light"><a href="{%url 'post' %}">post</a></li>
   <li class="heavy"><a href="#"><img src=""></a></li>
   <li class="light"><a href="#"><img src=""></a></li>
   <li class="heavy"><a href="#"><img src=""></a></li>
@@ -41,24 +41,13 @@
 </div>
 <div>
   <table class="commodity">
-    <tr>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-    </tr>
-    <tr>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-    </tr>
-    <tr>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-      <th><a href="#"><img src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}"></a></th>
-    </tr>
+      <tr>
+      {% for a in article %}
+      {% if a.commodity.owner.username == username %}
+      <th><a href="{%url 'commodity' a.pk %}"><img src="{{a.commodity.img.url}}" style="width:auto;height:183px;"></a></th>
+      {% endif %}
+      {% endfor %}
+      <tr>
   </table>
 </div>
 
