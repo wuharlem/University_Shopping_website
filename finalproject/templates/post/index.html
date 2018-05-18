@@ -14,7 +14,7 @@
 </div>
 <div class="search_bar">
   <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "CP" %}';" style="position: absolute;top:170px;left:150px;">
-  <form class="earch" action = "" method = "get">
+  <form id="search" action = "" method = "get" style="position: absolute;top:0px;left:0px;">
     <input type="text" name="search" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:蘭亭黑-繁;font-weight:900 ;padding: 15px">
     <input type="submit" value="" style="position: absolute;top:166px;left:1695px;width:75px;height:50px;border: 0px; background-image:url('{% static 'account/img/ntu_shopping_search_button.png'%}');">
    </form>
