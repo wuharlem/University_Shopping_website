@@ -24,9 +24,7 @@
 		<img id="ntust" src="{% static 'account/img/ntu_shopping_background_ntust.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
 		<img src="{% static 'account/img/ntu_shopping_createpage.png'%}" style="position: absolute;top: 0px ;left:0px">
 	</div>
-
-
-	<form action="" method="post"> {% csrf_token %}
+	<form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
 	<div class="input" id="account">
 		<label for="id_username"></label>
 		<input type="text" name="username" maxlength="150" placeholder="ACCOUNT" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact" autofocus required id="id_username" >
