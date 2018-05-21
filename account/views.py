@@ -1,15 +1,12 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
+from post.models import Commodity, Post, comment, rank
 
-@login_required
-def index(request):
-	username = request.user.username
-	return render(request, "post/index.html", locals())
 
 def create(request):
 	return render(request, "account/create.html", locals())
@@ -25,6 +22,16 @@ def register(request):
 			form = UserCreationForm()
 	return render(request, 'account/register.html',locals())
 
+
 @login_required
-def post(request, username):
+def manage(request):
+	username = request.user.username
+	article = Post.objects.all()
 	return render(request, 'post/my_store.html', locals())
+
+
+
+
+# def error_404(request):
+#         data = {}
+#         return render(request,'404.html', data)
