@@ -7,5 +7,5 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^post/$', views.post, name = "post"),
-    url(r'^(?P<article_id>\d+)/$', views.commodity, name = "commodity"),
+    url(r'^(?P<article_id>[^/]+)/$', views.commodity, name = "commodity"),
     ]

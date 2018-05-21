@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-
+import uuid
 from django.db import models
 from django.utils import timezone
 
@@ -9,7 +9,7 @@ class Commodity(models.Model):
 	price = models.DecimalField(max_digits = 5, decimal_places = 0)
 	number = models.IntegerField(default = 1)
 	status = models.CharField(max_length = 20, default = "")
-	introduction = models.TextField()
+	introduction = models.TextField(max_length = 300)
 
 
 	SHOPPING_CHOICES = (
@@ -38,9 +38,8 @@ class Commodity(models.Model):
 		self.save()
 
 class Post(models.Model):
+	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	commodity = models.OneToOneField('Commodity', on_delete=models.CASCADE)
-	# author = commodity.owner
-	# content = commodity.introduction
 
 	created_date = models.DateTimeField(
     	default=timezone.now)
