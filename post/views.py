@@ -12,18 +12,34 @@ from .models import Commodity, Post, comment, rank
 def mainpage(request):
 	username = request.user.username
 	article = Post.objects.all()
-	return HttpResponseRedirect("/type/CP/")
+	return HttpResponseRedirect("/type/ALL/1/")
 
 @login_required
-def index(request, production_type):
-	p_type = production_type
+def index(request, production_type, page_num):
 	username = str(request.user.username)
+	page_num = int(page_num)
 	article = Post.objects.all()
 
-	if "search" in request.GET:
-		s = request.GET["search"]
+	if production_type == "ALL":
+		article_list = article
 	else:
-		s = None
+		article_list = [ article[num] for num in range(0, len(article)) 
+		if article[num].commodity.type == production_type ]
+		
+	l = len(article_list) #length of article_list
+
+	if(int(l%12) == 0): l = l-1 #avoid adding more page as l%12 == 0
+
+	page_total_num = [ num for num in range(1, ((int(l/12))+1)+1) ] #list of page_number
+
+	if l > (page_num-1)*12 : #to check if page exist
+		if l <= (page_num)*12:
+			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*12, len(article_list))]
+		else:
+			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*12, page_num*12)]
+	else:
+		return HttpResponseRedirect("/") #or return /
+
 	return render(request, "post/index.html", locals())
 
 @login_required
