@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-	url(r'^$', views.manage, name = "manage"),
+	url(r'^(?P<page_num>\d+)/$', views.manage, name = "manage"),
     url(r'^login/$',login, name = "login"),
     url(r'^logout/$',logout, name = "logout"),
     url(r'^register/$', views.register, name = "register"),

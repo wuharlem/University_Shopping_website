@@ -9,11 +9,11 @@
 <body style="width: 1910px ;height: 1060px">
 <div class="header">
   <input type="button" onclick="location.href='{% url 'chat_index'  %}';" style="position: absolute;top: 21px;left: 1710px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #4D060C";>
-  <input type="button" onclick="location.href='{% url 'manage' %}';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
+  <input type="button" onclick="location.href='{% url 'manage' 1 %}';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
   <input type="button" style="position: absolute;top: 21px;left: 1550px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #4D060C";>
 </div>
 <div class="search_bar">
-  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "CP" %}';" style="position: absolute;top:170px;left:150px;">
+  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "ALL" 1 %}';" style="position: absolute;top:170px;left:150px;">
   <input type="text" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:蘭亭黑-繁;font-weight:900 ;padding: 15px">
   <input type="button" style="position: absolute;top:166px;left:1695px;width:75px;height:50px;border: 0px; background-image:url('{% static 'account/img/ntu_shopping_search_button.png'%}');">
 </div>
@@ -42,14 +42,23 @@
 <div>
   <table class="commodity">
       <tr>
-      {% for a in article %}
-      {% if a.commodity.owner.username == username %}
-      <th><a href="{%url 'commodity' a.pk %}"><img src="{{a.commodity.img.url}}" style="width:auto;height:183px;"></a></th>
+      {% for a in article_list %}
+      <th><a href="{%url 'commodity' a.0.pk %}"><img src="{{a.0.commodity.img.url}}" style="width:auto;height:182.5px;"></a></th>
+      {% if a.1 == 0 %}
+      <tr>
       {% endif %}
       {% endfor %}
       <tr>
   </table>
 </div>
-
+<div>
+<ul class="pagination">
+  <li><a href="#">«</a></li>
+  {% for num in page_total_num %}
+  <li><a href="{%url 'manage'  num %}">{{num}}</a></li>
+  {% endfor %}
+  <li><a href="#">»</a></li>
+</ul>
+</div>
 </body>
 </html>

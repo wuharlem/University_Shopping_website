@@ -27,7 +27,7 @@ from post import views as post_views
 urlpatterns = [
     url(r'^$', post_views.mainpage, name = "mainpage"),
     url(r'^profile/(?P<user_name>\w+)/$', post_views.profile, name = "profile"),
-    url(r'^type/(?P<production_type>\w+)/$', post_views.index, name = "index"),
+    url(r'^type/(?P<production_type>\w+)/(?P<page_num>\d+)/$', post_views.index, name = "index"),
     url(r'^commodity/', include('post.urls')),
     url(r'^chat/', include('chat.urls')),
     url(r'^account/', include('account.urls')),

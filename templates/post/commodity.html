@@ -9,11 +9,11 @@
 <body background="" style="width: 1910px ;height: 1060px">
 <div class="header">
   <input type="button" onclick="location.href='{% url 'chat_index'  %}';" style="position: absolute;top: 21px;left: 1710px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #4D060C";>
-  <input type="button" onclick="location.href='{% url 'manage' %}';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
+  <input type="button" onclick="location.href='{% url 'manage' 1 %}';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
   <input type="button" style="position: absolute;top: 21px;left: 1550px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #4D060C";>
 </div>
 <div class="search_bar">
-  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "CP" %}';" style="position: absolute;top:170px;left:150px;">
+  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "ALL" 1 %}';" style="position: absolute;top:170px;left:150px;">
   <input type="text" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 15px">
   <input type="button" style="position: absolute;top:166px;left:1695px;width:75px;height:50px;border: 0px; background-image:url('{% static 'account/img/ntu_shopping_search_button.png'%}');">
 </div>
@@ -22,25 +22,25 @@
 </div>
 <div>
 <ul class="left_bar">
-  <li class="light"><a href="{%url 'index' "CP" %}"><img src="{% static 'account/img/ntu_shopping_bar1.png'%}" style="width: 300px height:50px"></a></li>
-  <li class="heavy"><a href="{%url 'index' "CP" %}"><img src="{% static 'account/img/ntu_shopping_bar2.png'%}"></a></li>
-  <li class="light"><a href="{%url 'index' "FN" %}"><img src="{% static 'account/img/ntu_shopping_bar3.png'%}"></a></li>
-  <li class="heavy"><a href="{%url 'index' "TR" %}"><img src="{% static 'account/img/ntu_shopping_bar4.png'%}"></a></li>
-  <li class="light"><a href="{%url 'index' "TF" %}"><img src="{% static 'account/img/ntu_shopping_bar5.png'%}"></a></li>
-  <li class="heavy"><a href="{%url 'index' "HB" %}"><img src="{% static 'account/img/ntu_shopping_bar6.png'%}"></a></li>
-  <li class="light"><a href="{%url 'index' "CL" %}"><img src="{% static 'account/img/ntu_shopping_bar7.png'%}"></a></li>
-  <li class="heavy"><a href="{%url 'index' "FD" %}"><img src="{% static 'account/img/ntu_shopping_bar8.png'%}"></a></li>
-  <li class="light"><a href="{%url 'index' "CS" %}"><img src="{% static 'account/img/ntu_shopping_bar9.png'%}"></a></li>
-  <li class="heavy"><a href="{%url 'index' "BK" %}"><img src="{% static 'account/img/ntu_shopping_bar10.png'%}"></a></li>
-  <li class="light"><a href="{%url 'index' "MM" %}"><img src="{% static 'account/img/ntu_shopping_bar11.png'%}"></a></li>
-  <li class="heavy"><a href="{%url 'index' "HS" %}"><img src="{% static 'account/img/ntu_shopping_bar12.png'%}"></a></li>
-  <li class="light"><a href="{%url 'index' "OT" %}"><img src="{% static 'account/img/ntu_shopping_bar13.png'%}"></a></li>
+  <li class="light"><a href="{%url 'index' "CP" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar1.png'%}" style="width: 300px height:50px"></a></li>
+  <li class="heavy"><a href="{%url 'index' "FN" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar2.png'%}"></a></li>
+  <li class="light"><a href="{%url 'index' "TR" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar3.png'%}"></a></li>
+  <li class="heavy"><a href="{%url 'index' "TF" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar4.png'%}"></a></li>
+  <li class="light"><a href="{%url 'index' "HB" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar5.png'%}"></a></li>
+  <li class="heavy"><a href="{%url 'index' "CL" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar6.png'%}"></a></li>
+  <li class="light"><a href="{%url 'index' "AC" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar7.png'%}"></a></li>
+  <li class="heavy"><a href="{%url 'index' "FD" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar8.png'%}"></a></li>
+  <li class="light"><a href="{%url 'index' "CS" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar9.png'%}"></a></li>
+  <li class="heavy"><a href="{%url 'index' "BK" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar10.png'%}"></a></li>
+  <li class="light"><a href="{%url 'index' "MM" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar11.png'%}"></a></li>
+  <li class="heavy"><a href="{%url 'index' "HS" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar12.png'%}"></a></li>
+  <li class="light"><a href="{%url 'index' "OT" 1 %}"><img src="{% static 'account/img/ntu_shopping_bar13.png'%}"></a></li>
   <li class="heavy"><a href="#"></a></li>
   <li class="light"><a href="#"></a></li>
 </ul>
 </div>
 <div>
-<p style="position: absolute; top: 275px; left: 1150px; font-size: 48px;">{{production.name}}</p><hr class="line1" noshade="noshade"/>
+<p style="position: absolute; top: 325px; left: 1150px; font-size: 24px; ">{{production.name}}</p><hr class="line1" noshade="noshade"/>
 <table>
   <tr>
     <th>&nbsp;&nbsp;價格</th>
@@ -78,7 +78,7 @@
 
 <div class="introduction">
   <p style="position: absolute; top: 740px; left: 505px; font-size: 36px;">商品介紹 :</p>
-  <textarea style="position: absolute; top: 820px; left: 505px; font-size: 24px; " rows="6" cols="111" disabled>{{production.introduction}}</textarea>
+  <textarea style="position: absolute; top: 820px; left: 505px; font-size: 24px; width: 1243px; height: 180px;"  disabled>{{production.introduction}}</textarea>
 </div>
 
 </body>

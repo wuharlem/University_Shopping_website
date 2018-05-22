@@ -17,6 +17,19 @@
   background-color: #4D060C;
 }
 
+.right_bar{
+  width: 150px;
+  height: 800px;
+  margin: -800px 1768px;
+  background-color: #FFFFFF;
+}
+.footer{
+  width: 1342px;
+  height: 50px;
+  margin: 750px 426px;
+  background-color: #FFFFFF;
+}
+
 table{
   position: absolute;
   top: 283px;
@@ -57,4 +70,42 @@ ul.left_bar > li:hover {
     background-color: #4D060C;
     height: 50px;
   }
+
+ul.pagination {
+    position: absolute;
+    top: 1027px;
+    left: 950px;
+
+    display: inline-block;
+    padding: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.pagination li:first-child a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child a {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+ul.pagination li a.active {
+    background-color: #761822;
+    color: white;
+    border: 1px solid #761822;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
   
