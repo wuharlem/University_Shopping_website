@@ -50,7 +50,7 @@
   <table class="commodity">
       <tr>
       {% for a in article_list %}
-      <th><a href="{%url 'commodity' a.0.pk %}"><img src="{{a.0.commodity.img.url}}" style="width:auto;height:182.5px;"></a></th>
+      <th><a href="{%url 'commodity' a.0.pk %}"><img src="{{a.0.commodity.img.url}}" style="width:auto;height:182.5px;"></a><br>{{a.0.commodity.name}}</th>
       {% if a.1 == 0 %}
       <tr>
       {% endif %}
@@ -59,6 +59,7 @@
   </table>
 </div>
 <ul class="pagination">
+  <br><br>
   <li><a href="#">«</a></li>
   {% for num in page_total_num %}
   <li><a href="{%url 'index' production_type num %}">{{num}}</a></li>
