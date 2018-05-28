@@ -24,20 +24,37 @@
   background-color: #FFFFFF;
 }
 
+
+
 table{
   position: absolute;
-  top: 283px;
-  left: 450px;
-  border-spacing: 40px;
+  top: 312px;
+  left: 461px;
+  border-spacing: 23px;
 }
 th{
   width: 284px;
   height: 182.5px;
   background-color: white; 
 }
+th.commodity_name{
+  position: absolute;
+  margin-top: 162px;
+  margin-left: -309px;
+  width: 284px;
+  height: 20px;
+  font-family: 微軟正黑體;
+  color: white;
+  background-color: #4D060C;
+  opacity: 0.8;
+}
 th:hover{
-  background-color: white;
-  opacity:0.5;
+  opacity:0.7;
+
+}
+th:hover.commodity_name{
+  background-color: #4D060C;
+  opacity:0.8;
 }
 
 
@@ -66,10 +83,10 @@ ul.left_bar > li:hover {
   }
 
 ul.pagination {
+    font-family: impact;
     position: absolute;
-    top: 1000px;
-    left: 1050px;
-
+    top: 949px;
+    margin-left: 1036px;
     display: inline-block;
     padding: 0;
 }
@@ -77,7 +94,7 @@ ul.pagination {
 ul.pagination li {display: inline;}
 
 ul.pagination li a {
-    color: black;
+    color: #4D060C;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
@@ -86,19 +103,19 @@ ul.pagination li a {
 }
 
 .pagination li:first-child a {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .pagination li:last-child a {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 ul.pagination li a.active {
-    background-color: #761822;
+    background-color: #999999;
     color: white;
-    border: 1px solid #761822;
+    border: 1px solid #999999;
 }
 
 ul.pagination li a:hover:not(.active) {background-color: #ddd;}

@@ -46,9 +46,3 @@ def manage(request, page_num):
 		return HttpResponseRedirect("/account/1/")
 	return render(request, 'post/my_store.html', locals())
 
-
-
-
-# def error_404(request):
-#         data = {}
-#         return render(request,'404.html', data)

@@ -40,20 +40,20 @@
 </ul>
 </div>
 <div>
-<input type="text" placeholder="商品名稱" style="position: absolute; top: 330px; left: 1150px; height: 50px;width: 620px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 36px">
+<div style="position: absolute; top: 330px; left: 1150px; height: 50px;width: 620px;color:761822;font-family:impact;font-weight:900 ;padding: 5px;font-size: 36px">ntu_shpping</div>
 <hr class="line1" noshade="noshade"/>
 <table>
   <tr>
-    <th>&nbsp;&nbsp;價格</th>
-    <th><input type="text" placeholder="價格" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
+    <th>&nbsp;&nbsp;學校</th>
+    <th><input type="text" placeholder="國立台灣大學" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
   </tr>
   <tr>
-    <th>&nbsp;&nbsp;新舊</th>
-    <th><input type="text" placeholder="全新 or 二手" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
+    <th>&nbsp;&nbsp;電子郵件</th>
+    <th><input type="text" placeholder="shopping@gmail.com" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
   </tr>
   <tr>
-    <th>&nbsp;&nbsp;剩餘數量</th>
-    <th><input type="text" placeholder="數量" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
+    <th>&nbsp;&nbsp;面交地點</th>
+    <th><input type="text" placeholder="公館捷運站" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
   </tr>
   <tr>
     <th>&nbsp;&nbsp;交易方式</th>
@@ -63,15 +63,16 @@
 <hr class="line2" noshade="noshade"/>
 </div>
 <div class="commodity">
+  <img style="opacity: 0.5;" src="{% static 'account/img/sea.jpg'%}">
   <input style="color: white;font-size: 18px;position: absolute;top: 178px;left: 200px;" type='file' id="imgInp" accept="image/*"/>
 </div>
 <div class="line">
-    <input type="button" onclick="location.href='{%url 'commodity' 123 %}'" style="width:260px;height:50px;background-image:url('{% static 'account/img/ntu_shopping_post_button.jpg'%}');">
+    <input type="button" onclick="location.href='{%url 'profile' user_name %}'" style="width:260px;height:50px;background-image:url('{% static 'account/img/ntu_shopping_post_button.jpg'%}');">
 </div>
 
 <div class="introduction">
-  <p style="position: absolute; top: 747px; left: 505px; font-size: 30px;">商品介紹 :</p>
-  <textarea placeholder="介紹你的商品" style="padding: 10px;position: absolute; top: 830px; left: 505px; font-size: 24px; width: 1243px; height: 180px;font-family: 微軟正黑體;font-weight: 900;color:999999;"></textarea>
+  <p style="position: absolute; top: 747px; left: 505px; font-size: 30px;">賣場介紹 :</p>
+  <textarea placeholder="介紹你的賣場" style="padding: 10px;position: absolute; top: 830px; left: 505px; font-size: 24px; width: 1243px; height: 180px;font-family: 微軟正黑體;font-weight: 900;color:999999;"></textarea>
 </div>
 
 </body>

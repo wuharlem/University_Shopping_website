@@ -66,7 +66,10 @@ def profile(request, user_name):
 	user_name = get_object_or_404(User, username = user_name)
 	return render(request, 'post/profile.html', locals())
 
-
+@login_required
+def profile_update(request, user_name):
+	user_name = get_object_or_404(User, username = user_name)
+	return render(request, 'post/edit_about_me.html', locals())
 # def error_404(request):
 #         data = {}
 #         return render(request,'404.html', data)

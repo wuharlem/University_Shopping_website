@@ -7,9 +7,21 @@
 </head>
 <body>
     What chat room would you like to enter?<br/>
-    <input id="room-name-input" type="text" size="100"/><br/>
-    <input id="room-name-submit" type="button" value="Enter"/>
-    <button onclick="location.href='{% url 'manage' 1 %}';" >back</button>
+    <form>
+        <input id="room-name-input" type="text" size="100"/><br/>
+        <input id="room-name-submit" type="button" value="Enter"/>
+    </form>
+    <button onclick="location.href='{% url 'manage' 1 %}';" >back</button><br><br>
+    聊天室：
+    {% for r in room_name %}
+    <button onclick="location.href='{% url 'chat_room' r.1.id %}';">{{r.0}}</button>
+    {% endfor %}
+<!--     <form action="room" method="post">{% csrf_token %}
+    {% for r in room_name %}
+    <input type="hidden" name="room_id" value={{r.1.id}}>
+    <input type="submit" value={{r.0}}>   
+    {% endfor %}
+    </form> -->
 </body>
 <script>
     document.querySelector('#room-name-input').focus();

@@ -5,6 +5,11 @@
   <title>NTU Shopping</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="{% static 'account/css/index.css'%}">
+  <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
+  <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'account/js/jquery.cookie.js'%}"></script>
+  <script src="{% static 'account/js/jump.js'%}"></script>
+  
 </head>
 <body style="width: 1910px ;height: 1060px">
 <div class="header">
@@ -13,9 +18,9 @@
   <input type="button" style="position: absolute;top: 21px;left: 1550px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #4D060C";>
 </div>
 <div class="search_bar">
-  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "ALL" 1 %}';" style="position: absolute;top:170px;left:150px;">
+  <img id="logo" src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "ALL" 1 %}';" style="position: absolute;top:170px;left:150px;">
   <form id="search" action = "" method = "get" style="position: absolute;top:0px;left:0px;">
-    <input type="text" name="search" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:蘭亭黑-繁;font-weight:900 ;padding: 15px">
+    <input type="text" name="search" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 15px">
     <input type="submit" value="" style="position: absolute;top:166px;left:1695px;width:75px;height:50px;border: 0px; background-image:url('{% static 'account/img/ntu_shopping_search_button.png'%}');">
    </form>
 </div>
@@ -50,7 +55,17 @@
   <table class="commodity">
       <tr>
       {% for a in article_list %}
-      <th><a href="{%url 'commodity' a.0.pk %}"><img src="{{a.0.commodity.img.url}}" style="width:auto;height:182.5px;"></a><br>{{a.0.commodity.name}}</th>
+      <th class="commodity_img" style="display: none;"><a href="{%url 'commodity' a.0.pk %}"><img  src="{{a.0.commodity.img.url}}" style="width:284px;height:182.5px;"></a><br></th>
+      <th class="commodity_name" style="opacity: 0; height: 0px" ><div>{{a.0.commodity.name}}</div></th>
+      <script>
+        $(document).ready(function(){
+        $(".commodity_img").fadeIn(1000);
+        $(".commodity_name").animate({
+          opacity:0.8,
+          height:"20px",
+        },"slow");
+        });
+      </script>
       {% if a.1 == 0 %}
       <tr>
       {% endif %}

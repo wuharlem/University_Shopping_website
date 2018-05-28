@@ -6,9 +6,16 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20" disabled ></textarea><br/>
-    <input id="chat-message-input" type="text" size="100"/><br/>
-    <input id="chat-message-submit" type="button" value="Send"/>
+    <textarea id="chat-log" cols="100" rows="20" disabled >
+    {% for m in message %}
+    {{m.owner}}: {{m.content}} {{m.timestamp}}
+    {% endfor %}
+    </textarea><br/>
+    <!-- <form action="" method="post">{% csrf_token %} -->
+    <input id="chat-message-input"  type="text" size="100" name="message_input"/><br/>
+    <input id="chat-message-submit" type="button" value="send"/>
+    <!-- </form> -->
+    <br><br>
     <button onclick="location.href='{% url 'chat_index' %}';">back</button>
 </body>
 <script>
