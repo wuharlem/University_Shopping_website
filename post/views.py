@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
 from .models import Commodity, Post, comment, rank
+from account.models import Profile
 
 
 @login_required
@@ -64,6 +65,8 @@ def commodity(request, article_id):
 @login_required
 def profile(request, user_name):
 	user_name = get_object_or_404(User, username = user_name)
+	profile = Profile.objects.filter(user = user_name)
+	profile = profile[0]
 	return render(request, 'post/profile.html', locals())
 
 @login_required

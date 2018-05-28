@@ -6,8 +6,17 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+	SCHOOL_CHOICES = (
+        ('NTU', 'National Taiwan University'),
+        ('NTNU', 'National Taiwan Normal University'),
+        ('NTUST', 'National Taiwan University of Science and Technology'),
+    )
+
+	school = models.CharField(max_length=5, choices = SCHOOL_CHOICES, default='NTUST')
 	picture = models.ImageField(upload_to='images', default='/images/9.png' )
 	room = models.ManyToManyField('Room')
+	introduction = models.TextField(max_length = 300, default="About me.")
 
 	def publish(self):
 		self.save()

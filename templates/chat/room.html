@@ -6,9 +6,9 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20" disabled >
-    {% for m in message %}
-    {{m.owner}}: {{m.content}} {{m.timestamp}}
+    <textarea id="chat-log" cols="100" rows="20" disabled value="">
+    聊天吧～
+    {% for m in message %}{{m.owner}}: {{m.content}} {{m.timestamp}}
     {% endfor %}
     </textarea><br/>
     <!-- <form action="" method="post">{% csrf_token %} -->
@@ -20,7 +20,7 @@
 </body>
 <script>
     var roomName = {{ room_name_json }};
-    var username = {{name_json}};
+    var username = {{ name_json }};
 
 
     //Set up a WebSocket => chatSocket
@@ -34,13 +34,14 @@
         //m.data parsed into JSON
         var data = JSON.parse(m.data);
         var message = data['message'];
+        var user = data['user'];
        
         //querySelector -> select chat-log 
         // var a = d.now();
         var d =  new Date();
         var timestamp = d.toLocaleTimeString();
         
-        document.querySelector('#chat-log').value += ( message + " " + timestamp + '\n');
+        document.querySelector('#chat-log').value += (user+": "+ message + " " + timestamp + '\n');
     };
 
     // chatSocket -> onclose
@@ -58,7 +59,7 @@
 
     document.querySelector('#chat-message-submit').onclick = function(e) {
         var messageInputDom = document.querySelector('#chat-message-input');
-        var message = username + ": " + messageInputDom.value;
+        var message = messageInputDom.value;
         chatSocket.send(JSON.stringify({
             'message': message
         }));

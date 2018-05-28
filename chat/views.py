@@ -33,20 +33,10 @@ def room(request, room_name):
     mes = message.objects.filter(room = rooM)
     username = request.user.username
     timestamp = datetime.datetime.now()
-    m_input = ""
-
-    # if 'message_input' in request.POST:
-    #     m_input = request.POST.get("message_input")
-
-    #     m = message.objects.create(room=rooM,owner=str(username),content=m_input)
-    #     m.save()
-    # else:
-    #     m_input = False
 
     return render(request, 'chat/room.html', {
         'room_name_json': mark_safe(json.dumps(room_name)),
         'name_json': mark_safe(json.dumps(username)),
         'time_json': mark_safe(json.dumps(timestamp, default = myconverter)),
         'message':mes,
-        'm_input':m_input,
     })
