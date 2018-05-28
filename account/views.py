@@ -42,7 +42,7 @@ def manage(request, page_num):
 			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*12, len(article_list))]
 		else:
 			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*12, page_num*12)]
-	else:
-		return HttpResponseRedirect("/account/1/")
+
+
 	return render(request, 'account/my_store.html', locals())
 
