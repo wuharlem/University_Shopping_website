@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 import json
 import datetime
-from account.models import Room, message
+from account.models import Room, message, Profile
 from django.contrib.auth.models import User
 
 
@@ -32,11 +32,21 @@ def room(request, room_name):
     rooM = Room.objects.get(id = Id)
     mes = message.objects.filter(room = rooM)
     username = request.user.username
+    chat_person = ""
+    for n in rooM.owner.all():
+        if n.username != str(username):
+            chat_person = n.username
     timestamp = datetime.datetime.now()
+    profile = Profile.objects.get(user = User.objects.get(username=chat_person))
+
 
     return render(request, 'chat/room.html', {
         'room_name_json': mark_safe(json.dumps(room_name)),
         'name_json': mark_safe(json.dumps(username)),
         'time_json': mark_safe(json.dumps(timestamp, default = myconverter)),
         'message':mes,
+        'chat_person':chat_person,
+        'user':str(username),
+        'profile':profile,
+        'username':username,
     })

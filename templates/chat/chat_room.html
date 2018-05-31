@@ -5,7 +5,6 @@
   <title>NTU Shopping</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="{% static 'account/css/commodity.css'%}">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style type="text/css">
         li.r{
             text-align:left;
@@ -19,40 +18,6 @@
             /*border:solid;*/
             margin: 20px;
         }
-li.l .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-}
-
-li.l:hover .tooltiptext {
-    visibility: visible;
-}
-li.r .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-}
-
-li.r:hover .tooltiptext {
-    visibility: visible;
-}
     </style>
 </head>
 <body background="" style="width: 1910px ;height: 1060px">
@@ -91,19 +56,19 @@ li.r:hover .tooltiptext {
  <p style="position: absolute;top:-12px; left: 15px;color: white; font-family: impact;font-size:24px;">{{chat_person}}</p>
 </div>
 <div>
-    <div class="panel-body" id="all_messages" style="position: absolute; top: 334px; left: 434px; font-size: 24px; width: 1492px; height: 602px;font-family: 微軟正黑體;font-weight: 900;color:white; background: white; overflow:scroll">
+    <div class="panel-body" id="all_messages" style="position: absolute; top: 334px; left: 434px; font-size: 24px; width: 1492px; height: 602px;font-family: 微軟正黑體;font-weight: 900;color:999999; background: white">
         <ul id="chat">
             {% for m in message %}
             {% if m.owner == user%}
-            <li class="l"><span style="background:#94333D; padding: 10px; border-radius: 25px;">{{m.content}}</span><span class="tooltiptext">{{m.timestamp}}</span></li>
+            <li class="l">{{m.content}}</li>
             {% else %}
-            <li class="r"><img src='{{profile.picture.url}}' style="width: 50px; height: 50px; border-radius: 100%; border: solid;"><span style="background:#94333D; padding: 10px;
-            border-radius: 25px">{{m.content}}</span><span class="tooltiptext">{{m.timestamp}}</span></li>
+            <li class="r">{{m.owner}}: {{m.content}}</li>
             {% endif %}
             {% endfor %}
          </ul>
     </div>
-    <input id="chat-message-input"  type="text" size="100" name="message_input" placeholder="輸入訊息..." style="background-color: white;position: absolute; top: 935px; left: 434px; font-size: 24px; width: 1492px; height: 150px;font-family: 微軟正黑體;font-weight: 900;color:999999;"/>
+    {{profile}}
+    <textarea id="chat-message-input"  type="text" size="100" name="message_input" placeholder="輸入訊息..." style="background-color: white;position: absolute; top: 935px; left: 434px; font-size: 24px; width: 1492px; height: 150px;font-family: 微軟正黑體;font-weight: 900;color:999999;"/></textarea>
     <input id="chat-message-submit" type="hidden" value="send"/>
 </div>
 <script>
@@ -124,7 +89,6 @@ li.r:hover .tooltiptext {
         var message = data['message'];
         var user = data['user'];
         var receive_user = "{{user}}";
-        var img_url = "{{profile.picture.url}}";
        
         //querySelector -> select chat-log 
         // var a = d.now();
@@ -132,12 +96,22 @@ li.r:hover .tooltiptext {
         var timestamp = d.toLocaleTimeString();
 
         var node = document.createElement("LI");
-        if (user == receive_user){ 
-            $('<li class="l"><span style="background:#94333D; padding: 10px; border-radius: 25px">'+message+'<span></li>').appendTo($('#chat')); 
+        if (user == receive_user){
+            node.className = "l";
+            var textnode = document.createTextNode(message);
+            node.appendChild(textnode);
+            document.getElementById("chat").appendChild(node);   
+            $('<li class="l">Test</li>').appendTo($('#chat')); 
+
         } else {
-            $(' <li class="r"><img src=" ' + img_url + '"' + 'style="width: 50px; height: 50px; border-radius: 100%; border: solid;"><span style="background:#94333D; padding: 10px; border-radius: 25px">'+message+'</span></li>').appendTo($('#chat')); 
+            node.className = "r";
+            var textnode = document.createTextNode(user+": "+ message + " ");
+            node.appendChild(textnode);
+            document.getElementById("chat").appendChild(node);
+            $('<li class="l">Test</li>').appendTo($('#chat')); 
         }
-        $('.panel-body').scrollTop($('.panel-body')[0].scrollHeight);
+        
+        document.querySelector('#chat-log').value += (user+": "+ message + " " +  '\n');
     };
 
     // chatSocket -> onclose

@@ -43,7 +43,7 @@ class ChatConsumer(WebsocketConsumer):
         user = str(self.scope['user'])
         Id = int(self.room_name)
         rooM = Room.objects.get(id = Id)
-        model_message.objects.create(room=rooM, owner=user, content=message)
+        # model_message.objects.create(room=rooM, owner=user, content=message)
         
         
         # Send message to room group

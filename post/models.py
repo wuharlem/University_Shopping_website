@@ -37,7 +37,7 @@ class Commodity(models.Model):
 	def publish(self):
 		self.save()
 
-class Post(models.Model):
+class Post(models.Model): #Post has Commodity
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	commodity = models.OneToOneField('Commodity', on_delete=models.CASCADE)
 

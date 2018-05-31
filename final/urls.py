@@ -27,7 +27,7 @@ from post import views as post_views
 urlpatterns = [
     url(r'^$', post_views.mainpage, name = "mainpage"),
     url(r'^profile/(?P<user_name>\w+)/$', post_views.profile, name = "profile"),
-    url(r'^profile/(?P<user_name>\w+)/update/$', post_views.profile_update, name = "profile_update"),
+    # url(r'^profile/(?P<user_name>\w+)/update/$', post_views.profile_update, name = "profile_update"),
     url(r'^type/(?P<production_type>\w+)/(?P<page_num>\d+)/$', post_views.index, name = "index"),
     url(r'^commodity/', include('post.urls')),
     url(r'^chat/', include('chat.urls')),

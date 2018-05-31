@@ -5,6 +5,7 @@
   <title>NTU Shopping</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="{% static 'account/css/commodity.css'%}">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body background="" style="width: 1910px ;height: 1060px">
 <div class="header">
@@ -42,37 +43,75 @@
 <div>
 <div style="position: absolute; top: 330px; left: 1150px; height: 50px;width: 620px;color:761822;font-family:impact;font-weight:900 ;padding: 5px;font-size: 36px">ntu_shpping</div>
 <hr class="line1" noshade="noshade"/>
+<form id="edit_form">{% csrf_token %}
+
 <table>
   <tr>
     <th>&nbsp;&nbsp;學校</th>
-    <th>{{profile.school}}</th>
+    <th><input id="school" type="text" name="school" value="{{profile.school}}" disabled style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
   </tr>
   <tr>
     <th>&nbsp;&nbsp;電子郵件</th>
-    <th>{{profile.user.email}}</th>
+    <th><input id="email" type="text" name="email" value="{{profile.user.email}}" disabled style="height: 30px;width: auto;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
   </tr>
   <tr>
     <th>&nbsp;&nbsp;面交地點</th>
-    <th><input type="text" placeholder="公館捷運站" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
+    <th ><input type="text" disabled placeholder="公館捷運站" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
   </tr>
   <tr>
     <th>&nbsp;&nbsp;交易方式</th>
-    <th><input type="text" placeholder="面交 or 郵寄 or 其他" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
+    <th><input type="text" disabled placeholder="面交 or 郵寄 or 其他" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
   </tr>
 </table>
 <hr class="line2" noshade="noshade"/>
 </div>
 <div class="commodity">
-  <img src="{{profile.picture.url}}" style="width: auto;height:379px;border:1px solid #999999">
+  <img id = "picture" src="{{profile.picture.url}}" style="width: auto;height:379px;border:1px solid #999999">
+  <input id = "picture_edit" style="color: white;font-size: 18px;position: absolute;top: 178px;left: 200px;" type='hidden' id="imgInp" accept="image/*"/>
 </div>
-<div class="line">
-    <input type="button" onclick="location.href='{%url 'chat_index' %}'" style="width:260px;height:50px;background-image:url('{% static 'account/img/ntu_shopping_bar17.png'%}');">
+<div class="line"> 
+    <input id="button" type="button" onclick="edit()" value="編輯" style="width:260px;height:50px;background-color: #94333D; color: white; font-family:微軟正黑體; font-size:24px">
+    <input type="button" onclick="location.href='{%url 'chat_index' %}'" style="width:260px;height:50px;background-color: #94333D; background-image:url('{% static 'account/img/ntu_shopping_bar17.png'%}');">
 </div>
-
 <div class="introduction">
-  <p style="position: absolute; top: 747px; left: 505px; font-size: 30px;">賣場介紹 :</p>
-  <textarea style="padding: 10px;position: absolute; top: 830px; left: 505px; font-size: 24px; width: 1243px; height: 180px;font-family: 微軟正黑體;font-weight: 900;color:999999;" disabled>{{profile.introduction}}</textarea>
+  <p style="position: absolute; top: 769px; left: 505px; font-size: 30px;">賣場介紹 :</p>
+  <textarea id = "intro" form = "edit_form" name = "intro" contenteditable = "false" style="padding: 10px;position: absolute; top: 846px; left: 505px; font-size: 24px; width: 1243px; height: 180px;font-family: 微軟正黑體;font-weight: 900;color:999999;" disabled>{{profile.introduction}}</textarea>
 </div>
+</form>
+<script type="text/javascript">
+  var editable = "{{editable}}";
+  if (editable == "False"){
+    document.getElementById("button").type = "hidden";
+  }
 
+  function edit() {
+    var school = document.getElementById("school");
+    var email = document.getElementById("email");
+    var picture = document.getElementById("picture");
+    var picture_edit = document.getElementById("picture_edit");
+    var form = document.getElementById("edit_form");
+    var button = document.getElementById("button");
+    var introduction = document.getElementById("intro");
+
+    if (button.value == "編輯") {
+      school.disabled = false;
+      school.style.border = "gray solid";
+
+      email.disabled = false;
+      email.style.border = "gray solid";
+
+      introduction.disabled = false;
+      introduction.style.border = "gray solid";
+
+      picture.style.opacity = 0.5;  
+      picture_edit.type = "file";
+
+      button.value = "確認送出";
+      form.method = "post";
+    } else{
+       form.submit();
+    }
+  }
+</script>
 </body>
 </html>
