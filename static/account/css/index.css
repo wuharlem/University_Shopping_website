@@ -36,6 +36,8 @@ th{
   width: 284px;
   height: 182.5px;
   background-color: white; 
+  box-shadow:2px 2px 10px 1px #B4B5B5;
+
 }
 th.commodity_name{
   position: absolute;

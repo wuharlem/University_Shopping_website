@@ -1,52 +1,81 @@
 {% load static %}
 {% load staticfiles %}
+<!DOCTYPE html>
 <html>
 <head>
-  <title>NTU Shopping</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="{% static 'account/css/index.css'%}">
-  <link rel="stylesheet" href="{% static 'account/css/index.css'%}">
-  <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
-  <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
-  <script src="{% static 'account/js/jquery.cookie.js'%}"></script>
-  <script src="{% static 'account/js/jump.js'%}"></script>
+   <meta charset="utf-8"> 
+   <title>NTU SHOPPING</title>
+   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+   <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
+   <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
 </head>
-<body style="width: 1910px ;height: 1060px">
-<div class="header">
-  <input type="button" onclick="location.href='{% url 'chat_index'  %}';" style="position: absolute;top: 21px;left: 1710px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #4D060C";>
-  <input type="button" onclick="location.href='{% url 'manage' 1 %}';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
-  <input type="button" style="position: absolute;top: 21px;left: 1550px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #4D060C";>
-</div>
-<div class="search_bar">
-  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "ALL" 1 %}';" style="position: absolute;top:170px;left:150px;">
-  <input type="text" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:蘭亭黑-繁;font-weight:900 ;padding: 15px">
-  <input type="button" style="position: absolute;top:166px;left:1695px;width:75px;height:50px;border: 0px; background-image:url('{% static 'account/img/ntu_shopping_search_button.png'%}');">
-</div>
-<div class="bar_title">
-   <img src="{% static 'account/img/ntu_shopping_bar14.png'%}">
-</div>
-<div>
-<ul class="left_bar">
-  <li class="light"><a href="{%url 'profile' username %}"><img src="{% static 'account/img/ntu_shopping_bar19.png'%}" style="width: 300px height:50px"></a></li>
-  <li class="heavy"><a href="#"><img src="{% static 'account/img/ntu_shopping_bar15.png'%}"></a></li>
-  <li class="light"><a href="{%url 'post' %}"><img src="{% static 'account/img/ntu_shopping_bar20.png'%}"></a></li>
-  <li class="heavy"><a href="{%url 'chat_index' %}"><img src="{% static 'account/img/ntu_shopping_bar17.png'%}"></a></li>
-  <li class="light"><a href="{% url 'logout' %}"><img src="{% static 'account/img/ntu_shopping_bar18.png'%}"></a></li>
-  <li class="heavy"><a href=""><img src=""></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
-  <li class="heavy"><a href="#"><img src=""></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
-  <li class="heavy"><a href="#"><img src=""></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
-  <li class="heavy"><a href="#"><img src=""></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
-  <li class="heavy"><a href="#"></a></li>
-  <li class="light"><a href="#"></a></li>
-</ul>
-</div>
-<div>
-  <table class="commodity">
-      <tr>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12" style="background-color: #761822;">
+          <div class="row">
+        <div class="col-md-2" style="font-family: impact;color: white;font-weight: bold;font-size: 28px;padding: 15px;"><a href="{% url 'index' "ALL" 1 %}">&nbsp;&nbsp;&nbsp;NTU SHOPPING</a>
+        </div>
+        <div style="padding: 18px;left: 1.3%;" class="col-md-7"><input style="font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2" style="padding: 18px;left: 5%">
+          <input type="button" onclick="location.href='{% url 'chat_index'  %}';"  style="width: 30px;height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #761822;";>
+
+          <input type="button" onclick="location.href='{% url 'manage' 1 %}';" style="width: 30px; height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #761822";>
+
+          <input type="button" style="width: 30px; height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #761822";>
+        </div>
+        </div>
+      </div>
+        </div>
+    </div>  
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="row">
+        <ul type="none" style="padding: 0px;" class="col-md-12" class="left_bar">
+          <li style="background-color: #4D060C;padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;我的賣場</li>
+          <a href="{%url 'manage' 1 %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;我的商品</li></a>
+          <a href="{%url 'profile' username %}"><li class="heavy" style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;關於我</li></a>
+          <a href="{%url 'post' %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;賣東西</li></a>
+          <a href="{%url 'chat_index' %}"><li class="heavy" style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;訊息</li></a>
+          <a href="{% url 'logout' %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;登出</li></a>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+        </ul>
+      </div>
+
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                      <tr>
       {% for a in article_list %}
       <th class="commodity_img" style="display: none;"><a href="{%url 'commodity' a.0.pk %}"><img  src="{{a.0.commodity.img.url}}" style="width:284px;height:182.5px;"></a><br></th>
       <th class="commodity_name" style="opacity: 0; height: 0px" ><div>{{a.0.commodity.name}}</div></th>
@@ -64,17 +93,89 @@
       {% endif %}
       {% endfor %}
       <tr>
-  </table>
+        </table>
+        </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" style="background-color: white; height: 200px;text-align: center;margin-top: 10px">
+              <ul class="pagination" style="margin-top: 0px;">
+                <li><a href="#">«</a></li>
+                {% for num in page_total_num %}
+                <li><a href="{%url 'manage'  num %}">{{num}}</a></li>
+                {% endfor %}
+                <li><a href="#">»</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div>
-<br><br>
-<ul class="pagination">
-  <li><a href="#">«</a></li>
-  {% for num in page_total_num %}
-  <li><a href="{%url 'manage'  num %}">{{num}}</a></li>
-  {% endfor %}
-  <li><a href="#">»</a></li>
-</ul>
-</div>
+<style type="text/css">
+  body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  ul{
+    font-style: 微軟正黑體;
+    color: white;
+    font-weight:bold;
+    font-size: 16px;
+    background-color: #94333D;
+  }
+  li:hover{
+    background-color: #4D060C;
+  }
+  .heavy{
+    background-color: #761822;
+  }
+  a{
+    color: white;
+    text-decoration:none;
+  }
+  a:hover{
+    color: white;
+    text-decoration:none;
+  }
+
+  table{
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 20px 20px;
+  }
+  th{
+    background-color: white; 
+    box-shadow:1px 1px 5px 1px #B4B5B5;
+  }
+  th:hover{
+    opacity:0.7;
+  }
+
+  ul.pagination {
+    display: inline-block;
+    padding: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    font-family: impact;
+    color: #4D060C;
+    font-size: 12px;
+    float: left;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+ul.pagination li a.active {
+    background-color: #999999;
+    color: white;
+    border: 1px solid #999999;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+</style>
 </body>
 </html>

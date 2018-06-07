@@ -1,77 +1,233 @@
 {% load static %}
 {% load staticfiles %}
+<!DOCTYPE html>
 <html>
 <head>
-  <title>NTU Shopping</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="{% static 'account/css/commodity.css'%}">
+   <meta charset="utf-8"> 
+   <title>NTU SHOPPING</title>
+   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+   <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
+   <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+   <script src="{% static 'post/js/croppie.js'%}"></script>
+   <link rel="stylesheet" href="{% static 'post/js/croppie.css'%}">
 </head>
-<body background="" style="width: 1910px ;height: 1060px">
-<div class="header">
-  <input type="button" style="position: absolute;top: 21px;left: 1710px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #4D060C";>
-  <input type="button" onclick="location.href='{% url 'manage' 1 %}';" style="position: absolute;top: 21px;left: 1630px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #4D060C";>
-  <input type="button" style="position: absolute;top: 21px;left: 1550px; width: 50px; height: 50px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #4D060C";>
-</div>
-<div class="search_bar">
-  <img src="{% static 'account/img/ntu_shopping_logo.png'%}"  onclick="location.href='{% url 'index' "ALL" 1 %}';" style="position: absolute;top:170px;left:150px;">
-  <input type="text" placeholder="請輸入關鍵字" style="position: absolute;top:166px;left:484px;width:1286px;height:50px;font-size:24px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 15px">
-  <input type="button" style="position: absolute;top:166px;left:1695px;width:75px;height:50px;border: 0px; background-image:url('{% static 'account/img/ntu_shopping_search_button.png'%}');">
-</div>
-<div class="bar_title">
-   <img src="{% static 'account/img/ntu_shopping_bar14.png'%}">
-</div>
-<div>
-<ul class="left_bar">
-  <li class="light"><a href="{%url 'profile' username %}"><img src="{% static 'account/img/ntu_shopping_bar19.png'%}" style="width: 300px height:50px"></a></li>
-  <li class="heavy"><a href="{%url 'manage' 1 %}"><img src="{% static 'account/img/ntu_shopping_bar15.png'%}"></a></li>
-  <li class="light"><a href="{%url 'post' %}"><img src="{% static 'account/img/ntu_shopping_bar20.png'%}"></a></li>
-  <li class="heavy"><a href="{%url 'chat_index' %}"><img src="{% static 'account/img/ntu_shopping_bar17.png'%}"></a></li>
-  <li class="light"><a href="{% url 'logout' %}"><img src="{% static 'account/img/ntu_shopping_bar18.png'%}"></a></li>
-  <li class="heavy"><a href=""><img src=""></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
-  <li class="heavy"><a href="#"><img src=""></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
-  <li class="heavy"><a href="#"><img src=""></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
-  <li class="heavy"><a href="#"><img src=""></a></li>
-  <li class="light"><a href="#"><img src=""></a></li>
-  <li class="heavy"><a href="#"></a></li>
-  <li class="light"><a href="#"></a></li>
-<div>
-<form id = "edit_form" method="post">{% csrf_token %}
-<input type="text" name = "name" placeholder="商品名稱" style="position: absolute; top: 330px; left: 1150px; height: 50px;width: 620px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 36px">
-<hr class="line1" noshade="noshade"/>
-<table>
-  <tr>
-    <th>&nbsp;&nbsp;價格</th>
-    <th><input name="price" type="text" placeholder="價格" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
-  </tr>
-  <tr>
-    <th>&nbsp;&nbsp;新舊</th>
-    <th><input name="status" type="text" placeholder="全新 or 二手" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
-  </tr>
-  <tr>
-    <th>&nbsp;&nbsp;剩餘數量</th>
-    <th><input name="number" type="text" placeholder="數量" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
-  </tr>
-  <tr>
-    <th>&nbsp;&nbsp;交易方式</th>
-    <th><input type="text" placeholder="面交 or 郵寄 or 其他" style="height: 30px;width: 200px;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px"></th>
-  </tr>
-</table>
-<hr class="line2" noshade="noshade"/>
-</div>
-<div class="commodity">
-  <input style="color: white;font-size: 18px;position: absolute;top: 178px;left: 200px;" type='file' id="imgInp" accept="image/*"/>
-</div>
-<div class="line">
-    <input type="submit" value="" onclick="location.href='#'" style="width:260px;height:50px;background-image:url('{% static 'account/img/ntu_shopping_post_button.jpg'%}');">
-</div>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12" style="background-color: #761822;">
+          <div class="row">
+        <div class="col-md-2" style="font-family: impact;color: white;font-weight: bold;font-size: 28px;padding: 15px;"><a href="{% url 'index' "ALL" 1 %}">&nbsp;&nbsp;&nbsp;NTU SHOPPING</a>
+        </div>
+        <div style="padding: 18px;left: 1.3%;" class="col-md-7"><input style="font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2" style="padding: 18px;left: 5%">
+          <input type="button" onclick="location.href='{% url 'chat_index'  %}';"  style="width: 30px;height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #761822;";>
 
-<div class="introduction">
-  <p style="position: absolute; top: 747px; left: 505px; font-size: 30px;">商品介紹 :</p>
-  <textarea form="edit_form" name = "intro" placeholder="介紹你的商品" style="padding: 10px;position: absolute; top: 830px; left: 505px; font-size: 24px; width: 1243px; height: 180px;font-family: 微軟正黑體;font-weight: 900;color:999999;"></textarea>
+          <input type="button" onclick="location.href='{% url 'manage' 1 %}';" style="width: 30px; height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #761822";>
+
+          <input type="button" style="width: 30px; height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #761822";>
+        </div>
+        </div>
+      </div>
+        </div>
+    </div>  
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="row">
+        <ul type="none" style="padding: 0px;" class="col-md-12" class="left_bar">
+          <li style="background-color: #4D060C;padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;我的賣場</li>
+          <a href="{%url 'manage' 1 %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;我的商品</li></a>
+          <a href="{%url 'profile' username %}"><li class="heavy" style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;關於我</li></a>
+          <a href="{%url 'post' %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;賣東西</li></a>
+          <a href="{%url 'chat_index' %}"><li class="heavy" style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;訊息</li></a>
+          <a href="{% url 'logout' %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;登出</li></a>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+          <li class="heavy" style="padding: 10px;">&nbsp;</li>
+          <li style="padding: 10px;">&nbsp;</li>
+        </ul>
+      </div>
+
+        </div>
+        <div class="col-md-10" style="margin-top: 3%;">
+          <div class="row">
+            <div class="col-md-5" style="box-shadow:1px 1px 5px 1px #B4B5B5;left: 3.2%;">
+              <div>
+                <img id="blah" src="{% static 'account/img/ntu_shopping_daily_necessities/ntu_shopping_daily_necessities_01.png'%}" alt="your image" />
+              </div>
+              <input type='file' id="imgInp" name="picture" accept="image/*" onchange="readURL(this);">
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6" style="padding: 0px;margin-top: -2.5%;left: -3.2%;">
+              <table class="table table-striped" class="table-responsive-md">
+                <thead>
+                  <tr>
+                    <th><form id = "edit_form" method="post">{% csrf_token %}
+                      <input type="text" name = "name" placeholder="商品名稱" style="width: 100%;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px">
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>&nbsp;&nbsp;價格</th>
+                    <td><input name="price" type="text" placeholder="價格" style="color:761822;font-size: 14px;width: 100%"></td>
+                  </tr>
+                  <tr>
+                    <th>&nbsp;&nbsp;新舊</th>
+                    <td><input name="status" type="text" placeholder="全新 or 二手" style="color:761822;font-size: 14px;width: 100%"></td>
+                  </tr>
+                  <tr>
+                    <th>&nbsp;&nbsp;剩餘數量</th>
+                    <td><input name="number" type="text" placeholder="數量" style="color:761822;font-size: 14px;width: 100%;"></td>
+                  </tr>
+                  <tr>
+                    <th>&nbsp;&nbsp;交易方式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <td><input type="text" placeholder="面交 or 郵寄 or 其他" style="color:761822;font-size: 14px;width: 100%"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-md-5"></div>
+              <div class="col-md-2"></div>
+              <div class="col-md-5" style="padding: 0px;margin-top: 1.6%;"><input type="submit" onclick="location.href='#'" value="發佈" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
+              </div>
+            </div>
+            <div class="col-md-12" style="background-color: white;margin-top: 4%;">
+              <div class="col-md-1"></div>
+              <div class="col-md-11" style="background-color: #761822;width: 96.4%;left: 1.85%;color: white;font-family: 微軟正黑體;font-weight: 900;font-size: 24px;padding: 1%;">商品介紹:
+                <div class="col-md-12" style="height: 250px;margin-top: 1%;padding: 0px"><textarea style="width: 100%;height: 250px;"></textarea></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</form>
+<style type="text/css">
+  body{
+    overflow-x: hidden;
+    /*overflow-y: hidden;*/
+  }
+  ul{
+    font-style: 微軟正黑體;
+    color: white;
+    font-weight:bold;
+    font-size: 16px;
+    background-color: #94333D;
+  }
+  li:hover{
+    background-color: #4D060C;
+  }
+  .heavy{
+    background-color: #761822;
+  }
+  a{
+    color: white;
+    text-decoration:none;
+  }
+  a:hover{
+    color: white;
+    text-decoration:none;
+  }
+
+  table{
+    background-color: white;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight:900;
+    font-family: 微軟正黑體;
+    color: #4D060C;
+  }
+  th{
+    background-color: white;
+  }
+  td{
+    background-color: white;
+  }
+  th:hover{
+
+  }
+
+  ul.pagination {
+    display: inline-block;
+    padding: 0;
+  }
+  ul.pagination li {display: inline;}
+  ul.pagination li a {
+    font-family: impact;
+    color: #4D060C;
+    font-size: 12px;
+    float: left;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+  }
+  ul.pagination li a.active {
+    background-color: #999999;
+    color: white;
+    border: 1px solid #999999;
+  }
+  ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+</style>
+
+<style type="text/css">
+    img{
+    max-width:180px;
+  }
+  input[type=file]{
+    padding:10px;
+  } 
+</style>
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#blah').attr('src', e.target.result);
+          
+          $uploadCrop = $('#blah').croppie({
+            enableExif: true,
+            viewport: {
+              width: 200,
+              height: 200,
+              type: 'rectangle'
+            },
+            boundary: {
+              width: 300,
+              height: 300
+            }
+          });
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+</script>
 </body>
 </html>

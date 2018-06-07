@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
+
 from django.contrib.auth.models import User
 from .models import Commodity, Post, comment, rank
 from account.models import Profile
@@ -77,10 +78,11 @@ def post(request):
 		status = request.POST["status"] # -> post's commodity's status
 		number = request.POST["number"] # -> post's commodity's number
 		intro = request.POST["intro"] # -> post's commodity's introduction
-		'''
-		TODO list 1 
-		Use model create method 
-		'''		
+
+		if request.FILES['picture']:
+			picture = request.FILES['myfile']
+
+
 		return HttpResponseRedirect("/")
 	else:
 		return render(request, 'post/post.html', locals())
