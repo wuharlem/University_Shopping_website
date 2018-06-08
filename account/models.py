@@ -28,7 +28,8 @@ class Room(models.Model):
 	owner = models.ManyToManyField('auth.User')
 
 	def __str__(self):
-		return "%s and %s"%(self.owner.all()[0], self.owner.all()[1])
+		return str(self.id)
+		# return "%s and %s"%(self.owner.all()[0], self.owner.all()[1])
 
 class message(models.Model):
 	room = models.ForeignKey('Room', on_delete=models.CASCADE)

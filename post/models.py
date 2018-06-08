@@ -25,6 +25,7 @@ class Commodity(models.Model):
         ('BK', 'book'),
         ('MM', 'music_movie_culture'),
         ('HS', 'house'),
+        ('SP', 'sport'),
         ('OT', 'other'),
     )
 	type = models.CharField(max_length = 2, choices = SHOPPING_CHOICES, default = 'CP')

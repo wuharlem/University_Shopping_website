@@ -3,11 +3,12 @@ from django.http import HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.core.files.storage import FileSystemStorage
 
 
 from django.contrib.auth.models import User
+from account.models import Room, message, Profile
 from .models import Commodity, Post, comment, rank
-from account.models import Profile
 
 """
 1. Get login User
@@ -22,6 +23,7 @@ if true return the object else return 404
 @login_required
 def mainpage(request):
 	username = request.user.username
+	profile = Profile.objects.get(user = User.objects.get(username=username))
 	article = Post.objects.all()
 	return HttpResponseRedirect("/type/ALL/1/")
 
@@ -29,6 +31,7 @@ def mainpage(request):
 def index(request, production_type, page_num):
 	username = str(request.user.username)
 	page_num = int(page_num)
+	profile = Profile.objects.get(user = User.objects.get(username=username))
 
 	# get all articles
 	article = Post.objects.all() 
@@ -54,15 +57,15 @@ def index(request, production_type, page_num):
 	#length of article_list
 	l = len(article_list)
 
-	if(int(l%12) == 0): l = l-1 #avoid adding more page as l%12 == 0
+	if(int(l%100) == 0): l = l-1 #avoid adding more page as l%12 == 0
 
-	page_total_num = [ num for num in range(1, ((int(l/12))+1)+1) ] #list of page_number
+	page_total_num = [ num for num in range(1, ((int(l/100))+1)+1) ] #list of page_number
 
-	if l > (page_num-1)*12 : #check if page exist
-		if l <= (page_num)*12:
-			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*12, len(article_list))]
+	if l > (page_num-1)*100 : #check if page exist
+		if l <= (page_num)*100:
+			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*100, len(article_list))]
 		else:
-			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*12, page_num*12)]
+			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*100, page_num*100)]
 	else:
 		return HttpResponseRedirect("/")
 
@@ -70,7 +73,9 @@ def index(request, production_type, page_num):
 
 @login_required
 def post(request):
-	username = request.user.username
+	username = str(request.user.username)
+	profile = Profile.objects.get(user = User.objects.get(username=username))
+	commodity = Commodity.objects.all()[0]
 
 	if request.method == "POST":
 		name = request.POST["name"] # -> post's commodity's name
@@ -78,11 +83,17 @@ def post(request):
 		status = request.POST["status"] # -> post's commodity's status
 		number = request.POST["number"] # -> post's commodity's number
 		intro = request.POST["intro"] # -> post's commodity's introduction
+		tp = request.POST["tp"]
 
-		if request.FILES['picture']:
-			picture = request.FILES['myfile']
+		if 'picture' in request.FILES:
+			picture = request.FILES['picture']
+			fs = FileSystemStorage()
+			filename = fs.save(picture.name, picture)
 
+		commodity_info = Commodity.objects.create(owner=User.objects.get(username=username), name=name,
+			price=price, status=status, number=number, introduction=intro, img=fs.url(filename), type =tp)
 
+		new_post = Post.objects.create(commodity=commodity_info)
 		return HttpResponseRedirect("/")
 	else:
 		return render(request, 'post/post.html', locals())
@@ -91,9 +102,26 @@ def post(request):
 def commodity(request, article_id):
 	username = request.user.username
 	get_object_or_404(Post, pk = article_id)
+	profile = Profile.objects.get(user = User.objects.get(username=username))
 
 	article = Post.objects.get(pk = article_id)
 	production = article.commodity
+	seller = production.owner
+	room = Room.objects.all()
+	room = [r for r in room if r.owner.filter(username = username)]
+	chatroom = False
+	for r in room:
+		for u in r.owner.all():
+			if u.username == str(seller):
+				chatroom = r
+
+	if not chatroom:
+		chatroom = Room()
+		chatroom.save()
+		chatroom.owner.add(User.objects.get(username=username))
+		chatroom.save()
+		chatroom.owner.add(User.objects.get(username=str(seller)))
+		chatroom.save()
 
 	"""
 	Phrase1: Check if the Login User has the authentication 
@@ -105,25 +133,35 @@ def commodity(request, article_id):
 		editable = False
 
 	"""
-	Phrase2: Check if the Login User click rank button.
-	"""	
-	if "rank" in request.POST:
-		return HttpResponseRedirect("/commodity/"+ str(article_id)+"/")
-
-		"""
 	Phrase3: Edit the post if it has POST request.
 	"""		
 	
-	elif request.method == "POST":
+	if request.method == "POST":
+
 		name = request.POST["name"] # -> post's commodity's name
 		price = request.POST["price"] # -> post's commodity's price
 		status = request.POST["status"] # -> post's commodity's status
 		number = request.POST["number"] # -> post's commodity's number
 		intro = request.POST["intro"] # -> post's commodity's introduction
+		tp = request.POST["tp"]
+		
+		if 'picture' in request.FILES:
+			picture = request.FILES['picture']
+			fs = FileSystemStorage()
+			filename = fs.save(picture.name, picture)
+			production.img = fs.url(filename)
 		'''
 		TODO list 2
 		Just assign the value to model and MUST save().
 		'''		
+		production.name = name
+		production.price = price
+		production.status = status
+		production.number = number
+		production.introduction = intro
+		production.type = tp
+		production.save()
+
 		return HttpResponseRedirect("/commodity/"+ str(article_id)+"/")
 
 	else:
@@ -133,7 +171,6 @@ def commodity(request, article_id):
 def profile(request, user_name):
 	username = request.user.username
 	user_name = get_object_or_404(User, username = user_name)
-
 	"""
 	Phrase1: Check if the Login User has profile.
 			 If ture do getting the profile else create one.
@@ -160,10 +197,23 @@ def profile(request, user_name):
 	if request.method == "POST":
 		email = request.POST["email"] # -> User's email
 		intro = request.POST["intro"] # -> User's profile's introduction
+		school = request.POST["school"]
+		if 'picture' in request.FILES:
+			picture = request.FILES['picture']
+			fs = FileSystemStorage()
+			filename = fs.save(picture.name, picture)
+			profile.picture = fs.url(filename)
+			
 		'''
 		TODO list 3
 		Just assign the value to model and MUST save().
 		'''
+		profile.user.email = email
+		profile.introduction = intro
+		profile.school = school
+		profile.user.save()
+		profile.save()
+
 		return HttpResponseRedirect('/profile/'+str(user_name)+"/")
 	else:	
 		return render(request, 'post/profile.html', locals())

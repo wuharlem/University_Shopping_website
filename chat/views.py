@@ -16,22 +16,33 @@ def myconverter(o):
 @login_required
 def index(request):
     username = request.user.username
+    profile = Profile.objects.get(user = User.objects.get(username=username))
     room = Room.objects.all()
     room = [r for r in room if r.owner.filter(username = username)]
-    room_name = []
+    Room_name = []
     for r in room:
         for u in r.owner.all():
             if u.username != str(username):
-                room_name.append((u, r))
+                Room_name.append((u, r, Profile.objects.get(user=User.objects.get(username=u.username))))
+
 
     return render(request, 'chat/index.html', locals())
     
 @login_required
 def room(request, room_name):
+    username = request.user.username
+    my_profile = Profile.objects.get(user = User.objects.get(username=username))
+    room = Room.objects.all()
+    room = [r for r in room if r.owner.filter(username = username)]
+    Room_name = []
+    for r in room:
+        for u in r.owner.all():
+            if u.username != str(username):
+                Room_name.append((u, r, Profile.objects.get(user = User.objects.get(username=u.username))))
+
     Id = int(room_name)
     rooM = Room.objects.get(id = Id)
     mes = message.objects.filter(room = rooM)
-    username = request.user.username
     chat_person = ""
     for n in rooM.owner.all():
         if n.username != str(username):
@@ -49,4 +60,6 @@ def room(request, room_name):
         'user':str(username),
         'profile':profile,
         'username':username,
+        'Room_name':Room_name,
+        'my_profile':my_profile,
     })

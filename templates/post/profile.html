@@ -8,85 +8,98 @@
    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
    <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
    <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
-   <script src="{% static 'post/js/croppie.js'%}"></script>
-   <link rel="stylesheet" href="{% static 'post/js/croppie.css'%}">
+   <script>
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
+<script>
+    function ManageopenNav() {
+    document.getElementById("ManagemySidenav").style.height = "100%";
+  }
+  function ManagecloseNav() {
+    document.getElementById("ManagemySidenav").style.height = "0";
+  }
+</script>
 </head>
 <body>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-12" style="background-color: #761822;">
-          <div class="row">
-        <div class="col-md-2" style="font-family: impact;color: white;font-weight: bold;font-size: 28px;padding: 15px;"><a href="{% url 'index' "ALL" 1 %}">&nbsp;&nbsp;&nbsp;NTU SHOPPING</a>
+    <div class="col-md-12" style="background-color: #761822;overflow: hidden;">
+        <div class="col-md-3" style="font-family: impact;color: white;font-weight: bold;font-size: 28px;padding: 8px;margin-left: 3.9%;">
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
+            <a style="background-color: #94333D" href="{%url 'index' "CP" 1 %}">電腦 , 手機 , 電子周邊</a>
+            <a style="background-color: #761822" href="{%url 'index' "FN" 1 %}">家電 , 家具</a>
+            <a style="background-color: #94333D" href="{%url 'index' "TR" 1 %}">交通工具</a>
+            <a style="background-color: #761822" href="{%url 'index' "TF" 1 %}">玩具 , 公仔 , 電玩</a>
+            <a style="background-color: #94333D" href="{%url 'index' "HB" 1 %}">生活居家</a>
+            <a style="background-color: #761822" href="{%url 'index' "CL" 1 %}">服飾</a>
+            <a style="background-color: #94333D" href="{%url 'index' "AC" 1 %}">飾品 , 配件</a>
+            <a style="background-color: #761822" href="{%url 'index' "FD" 1 %}">食品</a>
+            <a style="background-color: #94333D" href="{%url 'index' "CS" 1 %}">保養 , 彩妝</a>
+            <a style="background-color: #761822" href="{%url 'index' "BK" 1 %}">書籍</a>
+            <a style="background-color: #94333D" href="{%url 'index' "MM" 1 %}">音樂 , 電影 , 文創</a>
+            <a style="background-color: #761822" href="{%url 'index' "HS" 1 %}">租屋</a>
+            <a style="background-color: #94333D" href="{%url 'index' "SP" 1 %}">運動</a>
+            <a style="background-color: #761822" href="{%url 'index' "OT" 1 %}">其他</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+          </div>
+          <a style="font-size:34px;cursor:pointer" onclick="openNav()">&#9776;</a>
+          <a href="{% url 'index' "ALL" 1 %}">NTU SHOPPING</a>
         </div>
-        <div style="padding: 18px;left: 1.3%;" class="col-md-7"><input style="font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字">
+        <div style="padding: 18px;left:-7.3% ;" class="col-md-6"><input style="width: 143%;font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字">
         </div>
         <div class="col-md-1"></div>
-        <div class="col-md-2" style="padding: 18px;left: 5%">
-          <input type="button" onclick="location.href='{% url 'chat_index'  %}';"  style="width: 30px;height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_chat.png'%}');background-color: #761822;";>
-
-          <input type="button" onclick="location.href='{% url 'manage' 1 %}';" style="width: 30px; height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_account.png'%}');background-color: #761822";>
-
-          <input type="button" style="width: 30px; height: 30px;border:0px ;background-image:url('{% static 'account/img/ntu_shopping_header_icon_cart.png'%}');background-color: #761822";>
+        <div class="col-md-2" style="padding: 18px;left: 12.5%">
+          <div id="ManagemySidenav" class="Managesidenav" style="">
+            <a style="background-color: #4D060C " href="javascript:void(0)" class="Manageclosebtn" onclick="ManagecloseNav()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
+            <a style="background-color: #94333D" href="{%url 'manage' 1 %}">我的商品</a>
+            <a style="background-color: #761822" href="{%url 'profile' username %}">關於我</a>
+            <a style="background-color: #94333D" href="{%url 'post' %}">賣東西</a>
+            <a style="background-color: #761822" href="{%url 'chat_index' %}">訊息</a>
+            <a style="background-color: #94333D" href="{% url 'logout' %}">登出</a>
+          </div>
+          <img src="{{profile.picture.url}}" style="width: 30px; height: 30px; border-radius: 100%;" onclick="ManageopenNav()">
+<!--           <div style="width: 30px; height: 30px;border:0px ;background-image:url('{{profile.picture.url}}" onclick="ManageopenNav()"></div> -->
         </div>
-        </div>
-      </div>
-        </div>
-    </div>  
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-2">
-          <div class="row">
-        <ul type="none" style="padding: 0px;" class="col-md-12" class="left_bar">
-          <li style="background-color: #4D060C;padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;我的賣場</li>
-          <a href="{%url 'manage' 1 %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;我的商品</li></a>
-          <a href="{%url 'profile' username %}"><li class="heavy" style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;關於我</li></a>
-          <a href="{%url 'post' %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;賣東西</li></a>
-          <a href="{%url 'chat_index' %}"><li class="heavy" style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;訊息</li></a>
-          <a href="{% url 'logout' %}"><li style="padding: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;登出</li></a>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-          <li class="heavy" style="padding: 10px;">&nbsp;</li>
-          <li style="padding: 10px;">&nbsp;</li>
-        </ul>
-      </div>
-
-        </div>
-        <div class="col-md-10" style="margin-top: 3%;">
+        <form id = "edit_form" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div class="col-md-12" style="margin-top: 3%;">
           <div class="row">
             <div class="col-md-5" style="box-shadow:1px 1px 5px 1px #B4B5B5;left: 3.2%;">
               <div>
               <img class="img-responsive" id = "picture" src="{{profile.picture.url}}" class="img-fluid" alt="Responsive image">
               </div>
-              <input id = "picture_edit" style="color: white;font-size: 18px;" type='hidden' id="imgInp" accept="image/*" onchange="readURL(this);"/>
+              <input id = "picture_edit" name="picture" style="color: white;font-size: 18px;" type='hidden' accept="image/*" onchange="readURL(this);"/>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-6" style="padding: 0px;margin-top: -3%;left: -3.2%;">
               <table class="table table-striped" class="table-responsive-md">
                 <thead>
                   <tr>
-                    <th><form id = "edit_form" method="post">{% csrf_token %}
+                    <th>
                       <input type="id" name = "id" value="{{profile.user.username}}" disabled style="width: 100%;font-family:impact;padding: 5px;font-size: 24px;border-style:none;">
                     </th>
                   </tr>
@@ -94,11 +107,19 @@
                 <tbody>
                   <tr>
                     <th>&nbsp;&nbsp;學校</th>
-                    <td><input id="school" type="text" name="school" value="{{profile.school}}" disabled style="font-family: impact;width: 100%;border-style:none;"></td>
+                    <td><input id="school" type="text" value="{{profile.school}}" disabled style="font-family: impact;width: 100%;border-style:none;">
+                    <select name="school" id="select" style="visibility: hidden;">
+                    {% for p in profile.SCHOOL_CHOICES %}
+                      <option value="{{p.0}}">{{p.1}}</option>
+                    {% endfor %}
+                    </select>
+                    </td>
                   </tr>
                   <tr>
                     <th>&nbsp;&nbsp;電子郵件</th>
-                    <td style=""><input id="email" type="text" name="email" value="{{profile.user.email}}" disabled style="font-family: impact;width: 100%;border-style:none;"></td>
+                    <td style=""><input id="email" type="email" name="email" value="{{profile.user.email}}" disabled style="font-family: impact;width: 100%;border-style:none;" placeholder="sophie@mail.ntust.edu.tw">
+                    <p id="hint" style="visibility:hidden;  color: gray; font-size:12px">email must be ntu/ntust/ntnu</p>
+                    </td>
                   </tr>
                   <tr>
                     <th>&nbsp;&nbsp;面交地點</th>
@@ -113,7 +134,7 @@
               <div class="col-md-5" style="padding: 0px;margin-top: 3.1%;"><input id="button" type="button" onclick="edit()" value="編輯" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;";>
               </div>
               <div class="col-md-2"></div>
-              <div class="col-md-5" style="padding: 0px;margin-top: 3.1%;"><input type="button" onclick="location.href='{%url 'chat_index' %}'" value="訊息" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
+              <div class="col-md-5" style="padding: 0px;margin-top: 3.1%;"><input id="chat" type="button" onclick="location.href='{%url 'chat_index' %}'" value="訊息" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
               </div>
             </div>
             <div class="col-md-12" style="background-color: white;margin-top: 4%;">
@@ -130,23 +151,7 @@
   </div>
 </div>
 <style type="text/css">
-  body{
-    overflow-x: hidden;
-    /*overflow-y: hidden;*/
-  }
-  ul{
-    font-style: 微軟正黑體;
-    color: white;
-    font-weight:bold;
-    font-size: 16px;
-    background-color: #94333D;
-  }
-  li:hover{
-    background-color: #4D060C;
-  }
-  .heavy{
-    background-color: #761822;
-  }
+
   a{
     color: white;
     text-decoration:none;
@@ -156,44 +161,58 @@
     text-decoration:none;
   }
 
-  table{
-    background-color: white;
-    font-size: 16px;
-    margin-top: 20px;
-    font-weight:900;
-    font-family: 微軟正黑體;
-    color: #4D060C;
-  }
-  th{
-    background-color: white;
-  }
-  td{
-    background-color: white;
-  }
-  th:hover{
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #4D060C;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: px;
+    overflow: hidden;
+}
 
-  }
-
-  ul.pagination {
-    display: inline-block;
-    padding: 0;
-  }
-  ul.pagination li {display: inline;}
-  ul.pagination li a {
-    font-family: impact;
-    color: #4D060C;
-    font-size: 12px;
-    float: left;
+.sidenav a {
+    padding: 8px 8px 8px 32px;
     text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-  }
-  ul.pagination li a.active {
-    background-color: #999999;
+    font-size: 16px;
     color: white;
-    border: 1px solid #999999;
-  }
-  ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #818181;
+}
+
+
+.Managesidenav {
+    height: 0;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 70px;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.Managesidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.Managesidenav a:hover {
+    color: #818181;
+}
 </style>
 <script type="text/javascript">
   var editable = "{{editable}}";
@@ -201,18 +220,23 @@
     document.getElementById("button").type = "hidden";
   }
 
+  if (editable != "False"){
+    document.getElementById("chat").type = "hidden";
+  }
+
   function edit() {
-    var school = document.getElementById("school");
     var email = document.getElementById("email");
     var picture = document.getElementById("picture");
     var picture_edit = document.getElementById("picture_edit");
     var form = document.getElementById("edit_form");
     var button = document.getElementById("button");
     var introduction = document.getElementById("intro");
+    var school =  document.getElementById("school");
+
+    var hint = document.getElementById("hint");
+    var sel = document.getElementById("select");
 
     if (button.value == "編輯") {
-      school.disabled = false;
-      school.style.border = "gray solid";
 
       email.disabled = false;
       email.style.border = "gray solid";
@@ -220,14 +244,21 @@
       introduction.disabled = false;
       introduction.style.border = "gray solid";
 
+      sel.style.visibility = 'visible';
+      school.type = "hidden";
+
       picture.style.opacity = 0.5;  
       picture_edit.type = "file";
 
+      hint.style.visibility = 'visible';
+
       button.value = "確認送出";
       form.method = "post";
+v
     } else{
        form.submit();
     }
+
   }
 </script>
 <script>
@@ -236,9 +267,9 @@
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          $('#picture').attr('src', e.target.result);
+          $('#picture_edit').attr('src', e.target.result);
           
-          $uploadCrop = $('#picture').croppie({
+          var uploadCrop = $('#picture_edit').croppie({
             enableExif: true,
             viewport: {
               width: 200,
@@ -252,9 +283,17 @@
           });
         };
 
-        reader.readAsDataURL(input.files[0]);
-      }
+      $('#button').click(function () {
+        $('#picture_edit').croppie('result', {
+          type: 'canvas',
+          size: 'original'
+        }).then(function (resp) {
+        $('#picture_edit').attr('src', resp);
+        });
+      });
+      reader.readAsDataURL(input.files[0]);
     }
+  }
 </script>
 </body>
 </html>

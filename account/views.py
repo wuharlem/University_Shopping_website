@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
 from post.models import Commodity, Post, comment, rank
+from account.models import Profile
 
 
 def create(request):
@@ -26,6 +27,7 @@ def register(request):
 @login_required
 def manage(request, page_num):
 	username = str(request.user.username)
+	profile = Profile.objects.get(user = User.objects.get(username=username))
 	page_num = int(page_num)
 	article = Post.objects.all()
 
@@ -33,15 +35,15 @@ def manage(request, page_num):
 
 	l = len(article_list) #length of article_list
 
-	if(int(l%12) == 0): l = l-1 #avoid adding more page as l%12 == 0
+	if(int(l%100) == 0): l = l-1 #avoid adding more page as l%12 == 0
 
-	page_total_num = [ num for num in range(1, ((int(l/12))+1)+1) ]
+	page_total_num = [ num for num in range(1, ((int(l/100))+1)+1) ]
 
-	if len(article_list) > (page_num-1)*12 :
-		if len(article_list) <= (page_num)*12:
-			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*12, len(article_list))]
+	if len(article_list) > (page_num-1)*100 :
+		if len(article_list) <= (page_num)*100:
+			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*100, len(article_list))]
 		else:
-			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*12, page_num*12)]
+			article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*100, page_num*100)]
 
 
 	return render(request, 'account/my_store.html', locals())

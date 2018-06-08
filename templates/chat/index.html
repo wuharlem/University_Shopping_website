@@ -1,34 +1,213 @@
-<!-- chat/templates/chat/index.html -->
+{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
-</head>
-<body>
-    What chat room would you like to enter?<br/>
-    <form>
-        <input id="room-name-input" type="text" size="100"/><br/>
-        <input id="room-name-submit" type="button" value="Enter"/>
-    </form>
-    <button onclick="location.href='{% url 'manage' 1 %}';" >back</button><br><br>
-    聊天室：
-    {% for r in room_name %}
-    <button onclick="location.href='{% url 'chat_room' r.1.id %}';">{{r.0}}</button>
-    {% endfor %}
-</body>
-<script>
-    document.querySelector('#room-name-input').focus();
-    document.querySelector('#room-name-input').onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#room-name-submit').click();
-        }
-    };
-
-    document.querySelector('#room-name-submit').onclick = function(e) {
-        var roomName = document.querySelector('#room-name-input').value;
-        window.location.pathname = '/chat/' + roomName + '/';
-    };
+   <meta charset="utf-8"> 
+   <title>NTU SHOPPING</title>
+   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+   <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
+   <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+   <script>
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
 </script>
+<script>
+    function ManageopenNav() {
+    document.getElementById("ManagemySidenav").style.height = "100%";
+  }
+  function ManagecloseNav() {
+    document.getElementById("ManagemySidenav").style.height = "0";
+  }
+</script>
+</head>
+<body style="overflow: hidden;">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12" style="background-color: #761822;overflow: hidden;">
+        <div class="col-md-3" style="font-family: impact;color: white;font-weight: bold;font-size: 28px;padding: 8px;margin-left: 3.9%;">
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
+            <a style="background-color: #94333D" href="{%url 'index' "CP" 1 %}">電腦 , 手機 , 電子周邊</a>
+            <a style="background-color: #761822" href="{%url 'index' "FN" 1 %}">家電 , 家具</a>
+            <a style="background-color: #94333D" href="{%url 'index' "TR" 1 %}">交通工具</a>
+            <a style="background-color: #761822" href="{%url 'index' "TF" 1 %}">玩具 , 公仔 , 電玩</a>
+            <a style="background-color: #94333D" href="{%url 'index' "HB" 1 %}">生活居家</a>
+            <a style="background-color: #761822" href="{%url 'index' "CL" 1 %}">服飾</a>
+            <a style="background-color: #94333D" href="{%url 'index' "AC" 1 %}">飾品 , 配件</a>
+            <a style="background-color: #761822" href="{%url 'index' "FD" 1 %}">食品</a>
+            <a style="background-color: #94333D" href="{%url 'index' "CS" 1 %}">保養 , 彩妝</a>
+            <a style="background-color: #761822" href="{%url 'index' "BK" 1 %}">書籍</a>
+            <a style="background-color: #94333D" href="{%url 'index' "MM" 1 %}">音樂 , 電影 , 文創</a>
+            <a style="background-color: #761822" href="{%url 'index' "HS" 1 %}">租屋</a>
+            <a style="background-color: #94333D" href="{%url 'index' "SP" 1 %}">運動</a>
+            <a style="background-color: #761822" href="{%url 'index' "OT" 1 %}">其他</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+            <a style="background-color: #761822" href="#">&nbsp;</a>
+            <a style="background-color: #94333D" href="#">&nbsp;</a>
+          </div>
+          <a style="font-size:34px;cursor:pointer" onclick="openNav()">&#9776;</a>
+          <a href="{% url 'index' "ALL" 1 %}">NTU SHOPPING</a>
+        </div>
+        <div style="padding: 18px;left:-7.3% ;" class="col-md-6"><input style="width: 130%;font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2" style="padding: 18px;left: 12.5%">
+          <div id="ManagemySidenav" class="Managesidenav" style="">
+            <a style="background-color: #4D060C " href="javascript:void(0)" class="Manageclosebtn" onclick="ManagecloseNav()"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
+            <a style="background-color: #94333D" href="{%url 'manage' 1 %}">我的商品</a>
+            <a style="background-color: #761822" href="{%url 'profile' username %}">關於我</a>
+            <a style="background-color: #94333D" href="{%url 'post' %}">賣東西</a>
+            <a style="background-color: #761822" href="{%url 'chat_index' %}">訊息</a>
+            <a style="background-color: #94333D" href="{% url 'logout' %}">登出</a>
+          </div>
+          <img src="{{profile.picture.url}}" style="width: 30px; height: 30px; border-radius: 100%;" onclick="ManageopenNav()">
+<!--           <div style="width: 30px; height: 30px;border:0px ;background-image:url('{{profile.picture.url}}" onclick="ManageopenNav()"></div> -->
+        </div>
+  </div>
 
+<div class="col-md-2" style="padding: 0">
+    <li style="background-color: ;font-size: 50px;position: fixed;width: 100%;height: calc(100% - 60.5px);overflow: scroll;">
+        {% for r in Room_name %}
+        <img onclick="location.href='{% url 'chat_room' r.1.id %}';" src="{{r.2.picture.url}}" style="width: 40px; height:40px ;border-radius: 100%;position: absolute;margin-top: 10px;margin-left: 10px"><!-- </ul> -->
+        <div style="color: #4D060C;background-color: ;width:  100%;padding: 15px;font-size: 24px;font-family: impact;margin-top: 8px;margin-left: 45px">
+        {{r.0}}
+        </div>
+        {% endfor %}
+    </li>
+</div>
+<style type="text/css">
+li{
+  text-align:left;
+  list-style-type: none;
+}
+li.r{
+  text-align:left;
+  list-style-type: none;
+  /*border:solid;*/
+  margin: 25px;
+}
+li.l{
+  text-align:right;
+  list-style-type: none;
+  /*border:solid;*/
+  margin: 25px;
+}
+li.l .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: black;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 10px;
+    position: relative;
+    padding: 5px;
+    top: 0px;
+    z-index: 1;
+    left: -5px;
+    opacity: 0.5;
+}
+
+li.l:hover .tooltiptext {
+    visibility: visible;
+}
+li.r .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: black;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 10px;
+    position: relative;
+    padding: 5px;
+    top: 0px;
+    z-index: 1;
+    left: 5px;
+    opacity: 0.5;
+}
+
+li.r:hover .tooltiptext {
+    visibility: visible;
+}
+a{
+    color: white;
+    text-decoration:none;
+  }
+  a:hover{
+    color: white;
+    text-decoration:none;
+  }
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #4D060C;
+    overflow: hidden;
+    transition: 0.5s;
+    padding-top: px;
+
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+.sidenav a:hover {
+    color: #818181;
+}
+.Managesidenav {
+    height: 0;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    right: 0;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.Managesidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.Managesidenav a:hover {
+    color: #818181;
+}
+</style>
+</body>
 </html>
