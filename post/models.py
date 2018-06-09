@@ -2,6 +2,11 @@ from __future__ import unicode_literals
 import uuid
 from django.db import models
 from django.utils import timezone
+from croppie.fields import CroppieField
+from django import forms
+
+class AddForm(forms.Form):
+    photo = CroppieField()
 
 class Commodity(models.Model):
 	owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -13,20 +18,20 @@ class Commodity(models.Model):
 
 
 	SHOPPING_CHOICES = (
-        ('CP', 'computer_phone_electronics'),
-        ('FN', 'furniture'),
-        ('TR', 'transpotation'),
-        ('TF', 'toy_figure_videogame_'),
-        ('HB', 'habitat'),
-        ('CL', 'clothes'),
-        ('AC', 'accessory'),
-        ('FD', 'food'),
-        ('CS', 'custom'),
-        ('BK', 'book'),
-        ('MM', 'music_movie_culture'),
-        ('HS', 'house'),
-        ('SP', 'sport'),
-        ('OT', 'other'),
+        ('CP', '電腦 , 手機 , 電子周邊'),
+        ('FN', '家電 , 家具'),
+        ('TR', '交通工具'),
+        ('TF', '玩具 , 公仔 , 電玩'),
+        ('HB', '生活居家'),
+        ('CL', '服飾'),
+        ('AC', '飾品 , 配件'),
+        ('FD', '食品'),
+        ('CS', '保養 , 彩妝'),
+        ('BK', '書籍'),
+        ('MM', '音樂 , 電影 , 文創'),
+        ('HS', '租屋'),
+        ('SP', '運動'),
+        ('OT', '其他'),
     )
 	type = models.CharField(max_length = 2, choices = SHOPPING_CHOICES, default = 'CP')
 

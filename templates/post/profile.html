@@ -8,6 +8,8 @@
    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
    <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
    <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+   <script src="{% static 'post/js/croppie.js'%}"></script>
+   <link rel="stylesheet" href="{% static 'post/js/croppie.css'%}">
    <script>
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -17,6 +19,7 @@
   }
 </script>
 <script>
+
     function ManageopenNav() {
     document.getElementById("ManagemySidenav").style.height = "100%";
   }
@@ -108,9 +111,9 @@
                   <tr>
                     <th>&nbsp;&nbsp;學校</th>
                     <td><input id="school" type="text" value="{{profile.school}}" disabled style="font-family: impact;width: 100%;border-style:none;">
-                    <select name="school" id="select" style="visibility: hidden;">
+                    <select name="school" id="select" style="visibility: hidden;font-family: 微軟正黑體;font-weight: 900;width: 100%;border-style:none;padding: 1%;"">
                     {% for p in profile.SCHOOL_CHOICES %}
-                      <option value="{{p.0}}">{{p.1}}</option>
+                      <option value="{{p.0}}">{{p.0}}</option>
                     {% endfor %}
                     </select>
                     </td>
@@ -126,7 +129,7 @@
                     <td><input id="" type="text" name="" value="公館捷運站" disabled style="width: 100%;border-style:none;"></td>
                   </tr>
                   <tr>
-                    <th>&nbsp;&nbsp;交易方式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>&nbsp;&nbsp;交易方式</th>
                     <td><input id="" type="text" name="" value="面交" disabled style="width: 100%;border-style:none;"></td>
                   </tr>
                 </tbody>
@@ -254,45 +257,11 @@
 
       button.value = "確認送出";
       form.method = "post";
-v
+
     } else{
        form.submit();
     }
 
-  }
-</script>
-<script>
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          $('#picture_edit').attr('src', e.target.result);
-          
-          var uploadCrop = $('#picture_edit').croppie({
-            enableExif: true,
-            viewport: {
-              width: 200,
-              height: 200,
-              type: 'rectangle'
-            },
-            boundary: {
-              width: 300,
-              height: 300
-            }
-          });
-        };
-
-      $('#button').click(function () {
-        $('#picture_edit').croppie('result', {
-          type: 'canvas',
-          size: 'original'
-        }).then(function (resp) {
-        $('#picture_edit').attr('src', resp);
-        });
-      });
-      reader.readAsDataURL(input.files[0]);
-    }
   }
 </script>
 </body>

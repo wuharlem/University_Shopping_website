@@ -69,7 +69,7 @@
           <a style="font-size:34px;cursor:pointer" onclick="openNav()">&#9776;</a>
           <a href="{% url 'index' "ALL" 1 %}">NTU SHOPPING</a>
         </div>
-        <div style="padding: 18px;left:-7.3% ;" class="col-md-6"><input style="width: 130%;font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字">
+        <div style="padding: 18px;left:-7.3% ;" class="col-md-6"><input style="width: 143%;font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字">
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-2" style="padding: 18px;left: 12.5%">
@@ -81,20 +81,21 @@
             <a style="background-color: #761822" href="{%url 'chat_index' %}">訊息</a>
             <a style="background-color: #94333D" href="{% url 'logout' %}">登出</a>
           </div>
-          <img src="{{profile.picture.url}}" style="width: 30px; height: 30px; border-radius: 100%;" onclick="ManageopenNav()">
+          <img class="zoomhead" src="{{profile.picture.url}}" style="margin-left: -2%;width: 35px; height: 35px; border-radius: 100%;border: solid white;" onclick="ManageopenNav()">
 <!--           <div style="width: 30px; height: 30px;border:0px ;background-image:url('{{profile.picture.url}}" onclick="ManageopenNav()"></div> -->
         </div>
   </div>
-
-<div class="col-md-2" style="padding: 0">
-    <li style="background-color: ;font-size: 50px;position: fixed;width: 100%;height: calc(100% - 60.5px);overflow: scroll;">
+<div class="col-md-12" style="padding:0;z-index: 0">
+    <div style="background-color:;font-size: 50px;position: fixed;width: 100%;height: calc(100% - 60.5px);overflow: scroll;">
         {% for r in Room_name %}
-        <img onclick="location.href='{% url 'chat_room' r.1.id %}';" src="{{r.2.picture.url}}" style="width: 40px; height:40px ;border-radius: 100%;position: absolute;margin-top: 10px;margin-left: 10px"><!-- </ul> -->
-        <div style="color: #4D060C;background-color: ;width:  100%;padding: 15px;font-size: 24px;font-family: impact;margin-top: 8px;margin-left: 45px">
+        <div class="hover" onclick="location.href='{% url 'chat_room' r.1.id %}';" style="box-shadow:0 0px 1px 0 rgba(0, 0, 0, 0.2);">
+            <img  src="{{r.2.picture.url}}" style="width: 40px; height:40px ;border-radius: 100%;position: absolute;margin-top: 10px;margin-left: 5.2%;box-shadow:0 0px 3px 0 rgba(0, 0, 0, 0.2);"><!-- </ul> -->
+        <div style="color: #4D060C;background-color: ;width:;padding: 20px;font-size: 14px;font-family: impact;margin-top: 0px;margin-left: 7.5%">
         {{r.0}}
         </div>
+        </div>
         {% endfor %}
-    </li>
+    </div>
 </div>
 <style type="text/css">
 li{
@@ -207,6 +208,24 @@ a{
 
 .Managesidenav a:hover {
     color: #818181;
+}
+.zoomhead {
+    transition: transform .2s;
+    margin: 0 auto;
+}
+.zoomhead:hover {
+    transform: scale(1.3);
+    opacity: 1;
+    background-color: black;
+}
+.hover {
+    transition: transform .2s;
+
+}
+.hover:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+
 }
 </style>
 </body>

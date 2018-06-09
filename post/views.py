@@ -175,8 +175,8 @@ def profile(request, user_name):
 	Phrase1: Check if the Login User has profile.
 			 If ture do getting the profile else create one.
 	"""
-	if not Profile.objects.filter(user = user_name):
-		Profile.objects.create(user = User.objects.get(username = user_name))
+	# if not Profile.objects.filter(user = user_name):
+	# 	Profile.objects.create(user = User.objects.get(username = user_name))
 
 	profile = Profile.objects.get(user = User.objects.get(username = user_name))
 

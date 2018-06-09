@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'social_django',
     'account',
     'post',
+    'croppie',
 ]
 
 MIDDLEWARE = [

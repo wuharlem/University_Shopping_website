@@ -1,44 +1,72 @@
 {% load static %}
 {% load staticfiles %}
+<!DOCTYPE html>
 <html>
 <head>
-  <title>NTU Shopping - login</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="{% static 'account/css/register.css'%}">
-  <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
-  <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
-  <script src="{% static 'account/js/jquery.cookie.js'%}"></script>
-  <script src="{% static 'account/js/jump.js'%}"></script>
-  <script>
-    $(document).ready(function(){
-    $("#ntu").fadeIn(1000);
-    $("#ntnu").delay(500).fadeIn(1000);
-    $("#ntust").delay(1000).fadeIn(1000);
-    });
-  </script>
+   <meta charset="utf-8"> 
+   <title>NTU SHOPPING</title>
+   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+   <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
+   <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+   <script>
+        $(document).ready(function(){
+        $("#ntu").fadeIn(1000);
+        $("#ntnu").delay(500).fadeIn(1000);
+        $("#ntust").delay(1000).fadeIn(1000);
+        });
+      </script>
 </head>
 <body>
-	<div>
-		<img id="ntu" src="{% static 'account/img/ntu_shopping_background_ntu.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
-		<img id="ntnu" src="{% static 'account/img/ntu_shopping_background_ntnu.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
-		<img id="ntust" src="{% static 'account/img/ntu_shopping_background_ntust.png'%}" style="display: none;position: absolute;top: 0px ;left:0px">
-		<img src="{% static 'account/img/ntu_shopping_createpage.png'%}" style="position: absolute;top: 0px ;left:0px">
-	</div>
-	<form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
-	<div class="input" id="account">
-		<label for="id_username"></label>
-		<input type="text" name="username" maxlength="150" placeholder="ACCOUNT" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact" autofocus required id="id_username" >
-	</div>
-	<div class="input" id="password">
-		<label for="id_password1"></label>
-		<input type="password" name="password1" placeholder="PASSWORD" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact" required id="id_password1">
-	</div>
-	<div class="input" id="confirm">
-		<input type="password" name="password2" placeholder="CONFIRM PASSWORD" style="width:600px;height:100px;font-size:48px;color:761822;text-align: center;font-family: Impact" required id="id_password2">
-	</div>
-	<div class="button" id="create">
-		<input type="submit" value="" style="width:605px;height:105px;background-image:url('{% static 'account/img/ntu_shopping_button_create.jpg'%}');">
-	</div>
-	</form>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12" style="padding: 0px;">
+      <div class="row" style="">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8" style="">
+          <div class="login" style="margin-top: 15%;position: relative;">
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+           <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+            	<div class="input" id="account">
+            		<label for="id_username" style="position: absolute;"></label>
+            		<input type="text" name="username" placeholder="ACCOUNT" style="padding:5%;position: relative;z-index:1;width: 220%;font-size:18px;color:#4D060C;text-align: center;font-family: Impact;margin-top: 180%;margin-left: -17%" autofocus required id="id_username" >
+            	</div>
+            	<div class="input" id="password">
+            		<label for="id_password1" style="position: absolute;"></label>
+            		<input type="password" name="password1" placeholder="PASSWORD" style="padding:5%;position: relative;z-index:1;width: 220%;font-size:18px;color:#4D060C;text-align: center;font-family: Impact;margin-top: 10%;margin-left: -17%;" required id="id_password1">
+            	</div>
+              <div class="input" id="confirm">
+              	<input type="password" name="password2" placeholder="CONFIRM PASSWORD" style="padding:5%;position: relative;z-index:1;width: 220%;color: #4D060C;font-size: 18px;text-align: center;font-family: Impact;margin-top: 10%;margin-left: -17%" required id="id_password2">
+              </div>
+              <div class="button" id="create">
+              	<input type="submit" value="CREATE" style="padding:5%;position: relative;z-index:1;width: 220%;background-color: #761822;color: white;font-size: 18px;text-align: center;font-family: Impact;margin-top: 10%;margin-left: -17%;"></div>
+            </form>
+            
+        </div>
+          <img class="img-responsive" src="{% static 'account/img/ntu_shopping_createpage.png'%}" style="position: absolute;z-index:0;">
+          <img class="img-responsive" id="ntu" src="{% static 'account/img/ntu_shopping_background_ntu.png'%}" style="position: absolute;z-index:-1;display: none;">
+          <img class="img-responsive" id="ntnu" src="{% static 'account/img/ntu_shopping_background_ntnu.png'%}" style="position: absolute;z-index:-1;display: none;">
+          <img class="img-responsive" id="ntust" src="{% static 'account/img/ntu_shopping_background_ntust.png'%}" style="position: absolute;z-index:-1;display: none;">
+          <img class="img-responsive" src="{% static 'account/img/ntu_shopping_loginpage.png'%}" style="position: absolute;z-index:-2;background-color: white;box-shadow:1px 1px 10px 1px black;">
+        </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+body {
+    margin:0;
+    padding:0;
+    background: #000 url({% static 'account/img/ntu_shopping_background.jpg'%}) center center fixed no-repeat;
+    -moz-background-size: cover;
+    background-size: cover;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+</style>
 </body>
 </html>

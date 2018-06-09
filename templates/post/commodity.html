@@ -88,40 +88,35 @@
         <form id = "edit_form" method="post" enctype="multipart/form-data">{% csrf_token %}
         <div class="col-md-12" style="margin-top: 3%;">
           <div class="row">
-            <div class="col-md-5" style="box-shadow:1px 1px 5px 1px #B4B5B5;left: 3.2%;">
+            <div class="col-md-4" style="box-shadow:1px 1px 5px 1px #B4B5B5;left: 3.2%;">
               <div>
               <img id = "picture" class="img-responsive" src="{{production.img.url}}" class="img-fluid" alt="Responsive image">
               </div>
               <input id = "picture_edit" name="picture" style="color: black;font-size: 18px;" type='hidden' accept="image/*" onchange="readURL(this);"/>
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-6" style="padding: 0px;margin-top: -3%;left: -3.2%;">
-              <table class="table table-striped" class="table-responsive-md">
-                <thead>
-                  <tr>
-                    <th>
-                      <input id="name" type="name" name = "name" value="{{production.name}}" disabled style="width: 100%;font-family:impact;padding: 5px;font-size: 24px;border-style:none;">
-                    </th>
-                  </tr>
-                </thead>
+            <div class="col-md-2"></div>
+            <div class="col-md-4" style="padding: 0px;margin-top: %;left: 3%;">
+              <table class="table table-striped" class="table-responsive-md" style="table-layout:fixed">
+
+                      <input id="name" type="name" name = "name" value="{{production.name}}" disabled style="width: 100%;font-family:微軟正黑體;font-weight: 900;padding: 10px;font-size: 18px;border-style:none;color:black">
                 <tbody>
                   <tr>
                     <th>&nbsp;&nbsp;價格</th>
-                    <td><input id="price" type="text" name="price" value="{{production.price}}" disabled style="font-family: impact;width: 100%;border-style:none;padding: 1%;"></td>
+                    <td><input id="price" type="text" name="price" value="{{production.price}}" disabled style="font-family: impact;width: 100%;border-style:none;padding: 1%;background-color: #F9F9F9;"></td>
                   </tr>
                   <tr>
                     <th>&nbsp;&nbsp;新舊</th>
-                    <td style=""><input id="status" type="text" name="status" value="{{production.status}}" disabled style="font-family: impact;width: 100%;border-style:none;padding: 1%;"></td>
+                    <td style=""><input id="status" type="text" name="status" value="{{production.status}}" disabled style="font-family: 微軟正黑體;font-weight: 900;width: 100%;border-style:none;padding: 1%;"></td>
                   </tr>
                   <tr>
                     <th>&nbsp;&nbsp;剩餘數量</th>
-                    <td><input id="number" type="text" name="number" value="{{production.number}}" disabled style="font-family: impact;width: 100%;border-style:none;padding: 1%;"></td>
+                    <td><input id="number" type="text" name="number" value="{{production.number}}" disabled style="font-family: impact;width: 100%;border-style:none;padding: 1%;background-color: #F9F9F9;"></td>
                   </tr>
                   <tr>
-                    <th>&nbsp;&nbsp;類型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>&nbsp;&nbsp;商品類型</th>
                     <td>
-                      <input id="type" type="text" value="{{production.get_type_display}}" disabled style="font-family: impact;width: 100%;border-style:none;padding: 1%;">
-                      <select name="tp" id="select" style="visibility: hidden;">
+                      <input id="type" type="text" value="{{production.get_type_display}}" disabled style="font-family: 微軟正黑體;font-weight: 900;width: 100%;border-style:none;">
+                      <select name="tp" id="select" style="visibility: hidden;font-family: 微軟正黑體;font-weight: 900;width: 100%;border-style:none;padding: 1%;">
                       {% for t in production.SHOPPING_CHOICES %}
                         <option value="{{t.0}}">{{t.1}}</option>
                       {% endfor %}
@@ -156,12 +151,10 @@
               </div>
               
             </div>
-            <div class="col-md-12" style="background-color: white;margin-top: 4%;">
-              <div class="col-md-1"></div>
-              <div class="col-md-11" style="background-color: #761822;width: 96.4%;left: 1.85%;color: white;font-family: 微軟正黑體;font-weight: 900;font-size: 24px;padding: 1%;">賣場介紹:
-                <div class="col-md-12" style="height: 250px;margin-top: 1%;padding: 0px"><textarea id = "intro" form = "edit_form" name = "intro" contenteditable = "false" style="width: 100%;height: 250px;color: black" disabled>{{production.introduction}}</textarea></div>
+            <div class="col-md-12" style="background-color: ;width: 100%;left: %;color: #761822;font-family: 微軟正黑體;font-weight: 900;font-size: 18px;padding: 3%;">
+                <div style="border-bottom-width:3px;border-bottom-style:solid;border-color:#761822;width: 88px;padding: 5px">商品介紹:</div> 
+                <div class="col-md-12" style="padding: 3%"><textarea id = "intro" form = "edit_form" name = "intro" contenteditable = "false" style="width: 100%;height:auto;color: black;border-style: none;padding: 0px" disabled>{{production.introduction}}</textarea></div>
               </div>
-            </div>
           </div>
         </div>
         </div>
@@ -170,7 +163,9 @@
   </div>
 </div>
 <style type="text/css">
-
+  th{
+    color: grey;
+  }
   a{
     color: white;
     text-decoration:none;
@@ -265,19 +260,32 @@
 
     if (button.value == "編輯") {
       name.disabled = false;
-      name.style.border = "gray solid"
+      name.style.color = "grey";
+      name.style.border = "thin solid grey";
+      name.style.padding = "9px";
 
       price.disabled = false;
-      price.style.border = "gray solid";
+      price.style.color = "grey";
+      price.style.border = "thin solid grey";
+      price.style.padding = "0.95px";
+      price.type = "number";
 
       status.disabled = false;
-      status.style.border = "gray solid";
+      status.style.color = "grey";
+      status.style.border = "thin solid grey";
+      status.style.padding = "0.95px";
 
       number.disabled = false;
-      number.style.border = "gray solid";
+      number.style.color = "grey";
+      number.style.border = "thin solid grey";
+      number.style.padding = "0.95px";
+      number.type = "number";
 
       introduction.disabled = false;
-      introduction.style.border = "gray solid";
+      introduction.style.color = "grey";
+      introduction.style.border = "thin solid grey";
+      introduction.style.padding = "0.95px";
+      introduction.style.width = "100%";
 
       sel.style.visibility = 'visible';
       type.type = "hidden"
@@ -290,40 +298,6 @@
 
     } else{
        form.submit();
-    }
-  }
-</script>
-<script>
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          $('#picture').attr('src', e.target.result);
-          
-          var uploadCrop = $('#picture').croppie({
-            enableExif: true,
-            viewport: {
-              width: 200,
-              height: 200,
-              type: 'rectangle'
-            },
-            boundary: {
-              width: 300,
-              height: 300
-            }
-          });
-        };
-
-      // $('#button').click(function () {
-      //   $('#picture').croppie('result', {
-      //     type: 'canvas',
-      //     size: 'original'
-      //   }).then(function (resp) {
-      //   $('#picture').attr('src', resp);
-      //   });
-      // });
-      reader.readAsDataURL(input.files[0]);
     }
   }
 </script>
