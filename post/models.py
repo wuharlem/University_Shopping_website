@@ -3,10 +3,7 @@ import uuid
 from django.db import models
 from django.utils import timezone
 from croppie.fields import CroppieField
-from django import forms
-
-class AddForm(forms.Form):
-    photo = CroppieField()
+import account.models 
 
 class Commodity(models.Model):
 	owner = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -47,6 +44,8 @@ class Post(models.Model): #Post has Commodity
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	commodity = models.OneToOneField('Commodity', on_delete=models.CASCADE)
 
+	Ranker = models.ManyToManyField('ranker', blank=True)
+
 	created_date = models.DateTimeField(
     	default=timezone.now)
 
@@ -58,6 +57,10 @@ class Post(models.Model): #Post has Commodity
 
 	def publish(self):
 		self.published_date = timezone.now()
+		self.save()
+
+	def edit(self):
+		self.edited_date = timezone.now()
 		self.save()
 	
 	def __str__(self):
@@ -78,12 +81,11 @@ class comment(models.Model):
 	def __str__(self):
 		return "%s comments %s at %s"%(self.author, self.content, self.created_time)
 
-class rank(models.Model):
-	post = models.OneToOneField('Post', on_delete=models.CASCADE)
+class ranker(models.Model):
 	author = models.CharField(max_length = 20)
 
 	created_time = models.DateTimeField(
             default=timezone.now)
 
 	def __str__(self):
-		return "%s ranks %s"%(self.author, self.post)
+		return "%s ranks at %s"%(self.author, self.created_time)

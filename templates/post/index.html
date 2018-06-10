@@ -69,17 +69,20 @@
           <a style="font-size:34px;cursor:pointer" onclick="openNav()">&#9776;</a>
           <a href="{% url 'index' "ALL" 1 %}">NTU SHOPPING</a>
         </div>
-        <div style="padding: 18px;left:-7.3% ;" class="col-md-6"><input style="width: 143%;font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字">
+        <form method="get">
+        <div style="padding: 18px;left:-7.3% ;" class="col-md-6"><input style="width: 143%;font-size:15px;color:#4D060C;font-family:微軟正黑體;font-weight:900; padding: 10px" type="text" class="form-control" placeholder="請輸入關鍵字" name="search">
         </div>
+        </form>
         <div class="col-md-1"></div>
         <div class="col-md-2" style="padding: 18px;left: 12.5%">
           <div id="ManagemySidenav" class="Managesidenav" style="">
             <a style="background-color: #4D060C " href="javascript:void(0)" class="Manageclosebtn" onclick="ManagecloseNav()"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
             <a style="background-color: #94333D" href="{%url 'manage' 1 %}">我的商品</a>
             <a style="background-color: #761822" href="{%url 'profile' username %}">關於我</a>
-            <a style="background-color: #94333D" href="{%url 'post' %}">賣東西</a>
-            <a style="background-color: #761822" href="{%url 'chat_index' %}">訊息</a>
-            <a style="background-color: #94333D" href="{% url 'logout' %}">登出</a>
+            <a style="background-color: #94333D" href="{%url 'cart' 1 %}">購物車</a>
+            <a style="background-color: #761822" href="{%url 'post' %}">賣東西</a>
+            <a style="background-color: #94333D" href="{%url 'chat_index' %}">訊息</a>
+            <a style="background-color: #761822" href="{% url 'logout' %}">登出</a>
           </div>
           <img class="zoomhead" src="{{profile.picture.url}}" style="margin-left: -2%;width: 35px; height: 35px; border-radius: 100%;border: solid white;" onclick="ManageopenNav()">
 <!--           <div style="width: 30px; height: 30px;border:0px ;background-image:url('{{profile.picture.url}}" onclick="ManageopenNav()"></div> -->

@@ -7,6 +7,7 @@ from django.conf import settings
 
 urlpatterns = [
 	url(r'^(?P<page_num>\d+)/$', views.manage, name = "manage"),
+	url(r'^cart/(?P<page_num>\d+)/$', views.cart, name = "cart"),
     url(r'^login/$',login, name = "login"),
     url(r'^logout/$',logout, name = "logout"),
     url(r'^register/$', views.register, name = "register"),

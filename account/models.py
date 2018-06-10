@@ -3,11 +3,13 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-
+from post.models import Commodity, Post, comment, ranker
 
 class Profile(models.Model): #User has Profile
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+	cart = models.ManyToManyField(Commodity, blank=True)
+	
 	SCHOOL_CHOICES = (
         ('NTU', 'National Taiwan University'),
         ('NTNU', 'National Taiwan Normal University'),
@@ -16,7 +18,7 @@ class Profile(models.Model): #User has Profile
 
 	school = models.CharField(max_length=5, choices = SCHOOL_CHOICES, default='NTUST')
 	picture = models.ImageField(upload_to='images', default='/images/9.png' )
-	room = models.ManyToManyField('Room')
+	room = models.ManyToManyField('Room', blank=True)
 	introduction = models.TextField(max_length = 300, default="About me.")
 
 	def publish(self):

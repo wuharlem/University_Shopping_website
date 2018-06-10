@@ -8,7 +8,7 @@ from django.core.files.storage import FileSystemStorage
 
 from django.contrib.auth.models import User
 from account.models import Room, message, Profile
-from .models import Commodity, Post, comment, rank
+from .models import Commodity, Post, comment, ranker
 
 """
 1. Get login User
@@ -25,6 +25,7 @@ def mainpage(request):
 	username = request.user.username
 	profile = Profile.objects.get(user = User.objects.get(username=username))
 	article = Post.objects.all()
+
 	return HttpResponseRedirect("/type/ALL/1/")
 
 @login_required
@@ -42,6 +43,29 @@ def index(request, production_type, page_num):
 	'''
 	Phrase1: Get the article filtered by the chosen production_type.
 	'''
+
+	if "search" in request.GET:
+		n = request.GET["search"]
+		article_list = [article[num] for num in range(0, len(article)) 
+		if n in article[num].commodity.name]
+
+		l = len(article_list)
+
+		if(int(l%100) == 0): l = l-1 #avoid adding more page as l%12 == 0
+
+		page_total_num = [ num for num in range(1, ((int(l/100))+1)+1) ] #list of page_number
+
+		if l > (page_num-1)*100 : #check if page exist
+			if l <= (page_num)*100:
+				article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*100, len(article_list))]
+			else:
+				article_list = [(article_list[num], (num+1)%4) for num in range((page_num-1)*100, page_num*100)]
+		else:
+			return render(request, "post/index.html", locals())
+
+		return render(request, "post/index.html", locals())
+
+
 	if production_type == "ALL": 
 		article_list = article
 
@@ -49,7 +73,6 @@ def index(request, production_type, page_num):
 		article_list = [article[num] for num in range(0, len(article)) 
 		if article[num].commodity.type == production_type]
 		
-
 	'''
 	Phrase2: Divide article_list into pages.
 	'''
@@ -94,19 +117,32 @@ def post(request):
 			price=price, status=status, number=number, introduction=intro, img=fs.url(filename), type =tp)
 
 		new_post = Post.objects.create(commodity=commodity_info)
+		new_post.publish()
 		return HttpResponseRedirect("/")
 	else:
 		return render(request, 'post/post.html', locals())
 
 @login_required
 def commodity(request, article_id):
-	username = request.user.username
 	get_object_or_404(Post, pk = article_id)
+
+	username = request.user.username
 	profile = Profile.objects.get(user = User.objects.get(username=username))
 
 	article = Post.objects.get(pk = article_id)
 	production = article.commodity
 	seller = production.owner
+	ranker_list = []
+	rankable = "True"
+	if article.Ranker:
+		for a_r in article.Ranker.all()[0:5]:
+			if str(a_r.author)==str(username):
+				rank_id = a_r.id
+				rankable = "False"
+			ranker_list.append(Profile.objects.get(user = User.objects.get(username=a_r.author)))
+
+
+
 	room = Room.objects.all()
 	room = [r for r in room if r.owner.filter(username = username)]
 	chatroom = False
@@ -135,8 +171,38 @@ def commodity(request, article_id):
 	"""
 	Phrase3: Edit the post if it has POST request.
 	"""		
-	
-	if request.method == "POST":
+
+
+	if "rank" in request.POST and not editable and rankable=="True":
+		profile.cart.add(Commodity.objects.get(id=request.POST['rank']))
+		profile.save()
+
+		rk = ranker.objects.create(author = str(User.objects.get(username=username)))
+		article.Ranker.add(rk)
+		article.save()
+		rankable = "False"
+		return HttpResponseRedirect("/commodity/"+ str(article_id)+"/")
+
+	if "rank" in request.POST and not editable and rankable=="False":
+		profile.cart.remove(Commodity.objects.get(id=request.POST['rank']))
+		profile.save()
+		rank_del = ranker.objects.get(id=rank_id)
+		article.Ranker.remove(rank_del)
+		article.save()
+		rank_del.delete()
+		rankable = "True"
+		return HttpResponseRedirect("/commodity/"+ str(article_id)+"/")
+
+	if "finish" in request.POST:
+		if article.Ranker:
+			for a_r in article.Ranker.all():
+				a_r.delete()
+		
+		production.delete()	
+
+		return HttpResponseRedirect("/")
+
+	if "name" in request.POST:
 
 		name = request.POST["name"] # -> post's commodity's name
 		price = request.POST["price"] # -> post's commodity's price
@@ -162,8 +228,9 @@ def commodity(request, article_id):
 		production.type = tp
 		production.save()
 
-		return HttpResponseRedirect("/commodity/"+ str(article_id)+"/")
+		article.edit()
 
+		return HttpResponseRedirect("/commodity/"+ str(article_id)+"/")
 	else:
 		return render(request, 'post/commodity.html', locals())
 
@@ -217,3 +284,5 @@ def profile(request, user_name):
 		return HttpResponseRedirect('/profile/'+str(user_name)+"/")
 	else:	
 		return render(request, 'post/profile.html', locals())
+
+

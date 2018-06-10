@@ -8,8 +8,6 @@
    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
    <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
    <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
-   <script src="{% static 'post/js/croppie.js'%}"></script>
-   <link rel="stylesheet" href="{% static 'post/js/croppie.css'%}">
    <script>
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -33,7 +31,7 @@
     <div class="col-md-12" style="background-color: #761822;overflow: hidden;">
         <div class="col-md-3" style="font-family: impact;color: white;font-weight: bold;font-size: 28px;padding: 8px;margin-left: 3.9%;">
           <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
             <a style="background-color: #94333D" href="{%url 'index' "CP" 1 %}">電腦 , 手機 , 電子周邊</a>
             <a style="background-color: #761822" href="{%url 'index' "FN" 1 %}">家電 , 家具</a>
             <a style="background-color: #94333D" href="{%url 'index' "TR" 1 %}">交通工具</a>
@@ -76,57 +74,56 @@
         <div class="col-md-1"></div>
         <div class="col-md-2" style="padding: 18px;left: 12.5%">
           <div id="ManagemySidenav" class="Managesidenav" style="">
-            <a style="background-color: #4D060C " href="javascript:void(0)" class="Manageclosebtn" onclick="ManagecloseNav()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
+            <a style="background-color: #4D060C " href="javascript:void(0)" class="Manageclosebtn" onclick="ManagecloseNav()"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收回</a>
             <a style="background-color: #94333D" href="{%url 'manage' 1 %}">我的商品</a>
             <a style="background-color: #761822" href="{%url 'profile' username %}">關於我</a>
-            <a style="background-color: #94333D" href="{%url 'post' %}">賣東西</a>
-            <a style="background-color: #761822" href="{%url 'chat_index' %}">訊息</a>
-            <a style="background-color: #94333D" href="{% url 'logout' %}">登出</a>
+            <a style="background-color: #94333D" href="{%url 'cart' 1 %}">購物車</a>
+            <a style="background-color: #761822" href="{%url 'post' %}">賣東西</a>
+            <a style="background-color: #94333D" href="{%url 'chat_index' %}">訊息</a>
+            <a style="background-color: #761822" href="{% url 'logout' %}">登出</a>
           </div>
-          <img src="{{profile.picture.url}}" style="width: 30px; height: 30px; border-radius: 100%;" onclick="ManageopenNav()">
+          <img class="zoomhead" src="{{profile.picture.url}}" style="margin-left: -2%;width: 35px; height: 35px; border-radius: 100%;border: solid white;" onclick="ManageopenNav()">
 <!--           <div style="width: 30px; height: 30px;border:0px ;background-image:url('{{profile.picture.url}}" onclick="ManageopenNav()"></div> -->
         </div>
   </div>
         <form id = "edit_form" method="post" enctype="multipart/form-data">{% csrf_token %}
-        <div class="col-md-12" style="margin-top: 3%;">
-          <div class="row">
-            <div class="col-md-3" style="box-shadow:1px 1px 5px 1px #B4B5B5;left: 3.2%;">
+        <div class="col-md-12" style="padding: 7%;margin-top: ">
+          <div style="margin-top: -5%">
+            <div class="row">
+            <div class="col-md-5" style="box-shadow:0 0px 3px 0 rgba(0, 0, 0, 0.2);margin-top: %">
               <div>
-              <img id = "picture" class="img-responsive" src="{% static 'account/img/ntu_shopping_daily_necessities/demo.png'%}" class="img-fluid" alt="Responsive image">
+              <img id = "picture" class="img-responsive" src="{% static 'account/img/ntu_shopping_daily_necessities/demo.png'%}" class="img-fluid" alt="Responsive image" style="opacity: 0.5">
               </div>
-              <input id = "picture_edit" name="picture" style="color: black;font-size: 18px;" type='file' accept="image/*" onchange="readURL(this);"required/>
+              <input id = "picture_edit" name="picture" style="position: absolute;color: grey;font-size: 12px;left: 35%;top:45%;font-family: 微軟正黑體;font-weight: 900;" type='file' accept="image/*" onchange="readURL(this);"required/>
             </div>
             <div class="col-md-1"></div>
-            <div class="col-md-6" style="padding: 0px;margin-top: -2.5%;left: -3.2%;">
-              <table class="table table-striped" class="table-responsive-md">
-                <thead>
-                  <tr>
-                    <th>
-                      <input type="text" name = "name" placeholder="商品名稱" style="width: 100%;color:761822;font-family:微軟正黑體;font-weight:900 ;padding: 5px;font-size: 18px" required>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
+            <div class="col-md-6" style="padding: 0px;">
+              
+
+                      <input type="text" name = "name" placeholder="商品名稱" style="width: 100%;font-family:微軟正黑體;font-weight: 900;padding: 10px;font-size: 18px;color:grey" required>
+                <table class="table table-striped" class="table-responsive-md" style="table-layout:fixed">
                   <tr>
                     <th>&nbsp;&nbsp;價格</th>
-                    <td><input name="price" type="text" placeholder="價格" style="color:761822;font-size: 14px;width: 100%" required></td>
+                    <td><input name="price" type="number" placeholder="  價格" style="font-family: impact;width: 100%;padding: %;background-color: #F9F9F9;color:grey" required></td>
                   </tr>
                   <tr>
                     <th>&nbsp;&nbsp;新舊</th>
-                    <td><input name="status" type="text" placeholder="全新 or 二手" style="color:761822;font-size: 14px;width: 100%" required></td>
+                    <td>
+                      <select name="status" id="tr" style="font-family: 微軟正黑體;font-weight: 900;width: 100%;border-style:none;padding: %;color:grey"required>
+                        <option value="全新">全新</option>
+                        <option value="二手">二手</option>
+                        <option value="其他">其他</option>
+                      </select>
+                    </td>
                   </tr>
                   <tr>
                     <th>&nbsp;&nbsp;剩餘數量</th>
-                    <td><input name="number" type="number" placeholder="數量" style="color:761822;font-size: 14px;width: 100%;" required></td>
+                    <td><input name="number" type="number" placeholder="  數量" style="font-family: impact;width: 100%;padding: %;background-color: #F9F9F9;color:grey" required></td>
                   </tr>
                   <tr>
-                    <th>&nbsp;&nbsp;交易方式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                    <td><input type="text" placeholder="面交 or 郵寄 or 其他" style="color:761822;font-size: 14px;width: 100%" required></td>
-                  </tr>
-                  <tr>
-                    <th>&nbsp;&nbsp;類型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <th>&nbsp;&nbsp;商品類型
                     <td>
-                    <select name="tp" id="select">
+                    <select name="tp" id="select" style="font-family: 微軟正黑體;font-weight: 900;width: 100%;border-style:none;padding: %;color:grey">
                       {% for t in commodity.SHOPPING_CHOICES %}
                         <option value="{{t.0}}">{{t.1}}</option>
                       {% endfor %}
@@ -137,14 +134,16 @@
               </table>
               <div class="col-md-5"></div>
               <div class="col-md-2"></div>
-              <div class="col-md-5" style="padding: 0px;margin-top: 1.6%;"><input type="submit" onclick="location.href='#'" value="發佈" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
+              <div class="col-md-5" style="padding: 0px;margin-top:4%;"><input type="submit" onclick="location.href='#'" value="發佈" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
               </div>
             </div>
-            <div class="col-md-12" style="background-color: white;margin-top: 4%;">
-              <div class="col-md-1"></div>
-              <div class="col-md-11" style="background-color: #761822;width: 96.4%;left: 1.85%;color: white;font-family: 微軟正黑體;font-weight: 900;font-size: 24px;padding: 1%;">商品介紹:
-                <div class="col-md-12" style="height: 250px;margin-top: 1%;padding: 0px"><textarea id = "intro" form = "edit_form" name = "intro" style="width: 100%;height: 250px;" required></textarea></div>
-              </div>
+          </div>
+          
+            <div class="col-md-12" style="background-color: ;width: 100%;left: %;color: #761822;font-family: 微軟正黑體;font-weight: 900;font-size: 18px;padding: 0%;margin-top: 3%">
+                <div style="border-bottom-width:3px;border-bottom-style:solid;border-color:#761822;width: 88px;padding: 5px">商品介紹:</div> 
+            <div style="padding: 2%">
+              <textarea id = "intro" form = "edit_form" name = "intro" contenteditable = "false" style="width: 100%;height:300px;color: black;padding: 0px"></textarea>
+          </div>
             </div>
           </div>
         </div>
@@ -154,7 +153,9 @@
   </div>
 </div>
 <style type="text/css">
-
+  th{
+    color: grey;
+  }
   a{
     color: white;
     text-decoration:none;
@@ -197,7 +198,7 @@
     width: 250px;
     position: fixed;
     z-index: 1;
-    top: 70px;
+    top: 0px;
     right: 0;
     overflow-x: hidden;
     transition: 0.5s;
@@ -216,6 +217,16 @@
 .Managesidenav a:hover {
     color: #818181;
 }
+.zoomhead {
+    transition: transform .2s;
+    margin: 0 auto;
+}
+.zoomhead:hover {
+    transform: scale(1.3);
+    opacity: 1;
+    background-color: black;
+}
+</style>
 </style>
 </body>
 </html>
