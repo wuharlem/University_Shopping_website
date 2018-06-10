@@ -174,7 +174,6 @@ def commodity(request, article_id):
 	"""
 	Phrase3: Edit the post if it has POST request.
 	"""		
-	return render(request, 'post/commodity.html', locals())
 
 	if "rank" in request.POST and not editable and rankable=="True":
 		profile.cart.add(Commodity.objects.get(id=request.POST['rank']))
@@ -185,8 +184,8 @@ def commodity(request, article_id):
 		article.save()
 		rankable = "False"
 		return HttpResponseRedirect("/commodity/"+ str(article_id)+"/")
-	else:
-		return render(request, 'post/commodity.html', locals())
+	# else:
+	# 	return render(request, 'post/commodity.html', locals())
 
 	if "rank" in request.POST and not editable and rankable=="False":
 		profile.cart.remove(Commodity.objects.get(id=request.POST['rank']))
@@ -197,8 +196,8 @@ def commodity(request, article_id):
 		rank_del.delete()
 		rankable = "True"
 		return HttpResponseRedirect("/commodity/"+ str(article_id)+"/")
-	else:
-		return render(request, 'post/commodity.html', locals())
+	# else:
+	# 	return render(request, 'post/commodity.html', locals())
 
 	if "finish" in request.POST:
 		if article.Ranker:
@@ -208,8 +207,8 @@ def commodity(request, article_id):
 		production.delete()	
 
 		return HttpResponseRedirect("/")
-	else:
-		return render(request, 'post/commodity.html', locals())
+	# else:
+	# 	return render(request, 'post/commodity.html', locals())
 
 	if "name" in request.POST:
 
