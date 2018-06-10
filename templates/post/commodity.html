@@ -152,13 +152,13 @@
                 <form action="" method="post">{% csrf_token %}
                   <input type="hidden" name="rank" value={{production.id}}>
                   <input id="rank" type="submit" value = "排" onclick="success()" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
+                </form>
                   <br><br>
+                  <p>{{total_num}}</p>
                   {% for ranker in ranker_list%}
-                  {{ranker.0}}
                     <img class="zoomhead" src="{{ranker.1.picture.url}}" style="margin-left: -2%;width: 35px; height: 35px; border-radius: 100%;border: solid white;"
                     onclick="location.href='{%url 'profile' ranker.1 %}'">
                   {% endfor %}
-                </form>
               </div>
             </div>
               <div class="col-md-12" style="background-color: ;width: 100%;left: %;color: #761822;font-family: 微軟正黑體;font-weight: 900;font-size: 18px;padding: 0%;margin-top: 3%">

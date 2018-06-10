@@ -8,6 +8,8 @@
    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
    <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
    <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
+   <script src="{% static 'post/js/croppie.js'%}"></script>
+   <link rel="stylesheet" href="{% static 'post/js/croppie.css'%}"> 
    <script>
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -86,7 +88,7 @@
 <!--           <div style="width: 30px; height: 30px;border:0px ;background-image:url('{{profile.picture.url}}" onclick="ManageopenNav()"></div> -->
         </div>
   </div>
-        <form id = "edit_form" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <!-- <form id = "edit_form" method="post" enctype="multipart/form-data">{% csrf_token %} -->
         <div class="col-md-12" style="padding: 7%;margin-top: ">
           <div style="margin-top: -5%">
             <div class="row">
@@ -134,7 +136,7 @@
               </table>
               <div class="col-md-5"></div>
               <div class="col-md-2"></div>
-              <div class="col-md-5" style="padding: 0px;margin-top:4%;"><input type="submit" onclick="location.href='#'" value="發佈" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
+              <div class="col-md-5" style="padding: 0px;margin-top:4%;"><input id="send" type="submit" value="發佈" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
               </div>
             </div>
           </div>
@@ -152,6 +154,8 @@
     </div>
   </div>
 </div>
+<img id="demo" src="">
+<button id="button1">crop</button>
 <style type="text/css">
   th{
     color: grey;
@@ -228,5 +232,51 @@
 }
 </style>
 </style>
+<script type="text/javascript">
+     function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#picture').attr('src', e.target.result);
+                    // $('#demo').attr('src', e.target.result);
+
+                    var basic = $('#picture').croppie({
+                      viewport: {
+                        width: 200,
+                        height: 200,
+                        type: 'rectangle'
+                      },
+                      boundary: {
+                        width: 300,
+                        height: 300
+                      }
+                    });
+
+                    basic.croppie("bind", {
+                        url:e.target.result,
+                    });
+
+                    $('#button1').on('click', 
+                      function (ev) {
+                      basic.croppie('result', 
+                      {
+                        type: 'canvas',
+                        size: 'viewport'
+                      }).then(function (resp) {
+                        // var data = resp
+                        // $('#picture_edit').val(data);
+                        // $('#edit_form').submit();
+                        $('#demo').attr('src', resp);
+                        alert(resp);
+                        $('#picture').attr('src', resp);
+                    });
+                    });
+
+                };
+                reader.readAsDataURL(input.files[0]);
+        }
+      }
+</script>
 </body>
 </html>
