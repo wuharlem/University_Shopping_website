@@ -135,12 +135,13 @@ def commodity(request, article_id):
 	ranker_list = []
 	rankable = "True"
 	if article.Ranker:
+		num = 0
 		for a_r in article.Ranker.all()[0:5]:
 			if str(a_r.author)==str(username):
 				rank_id = a_r.id
 				rankable = "False"
-			ranker_list.append(Profile.objects.get(user = User.objects.get(username=a_r.author)))
-
+			num = num+1
+			ranker_list.append((num,Profile.objects.get(user = User.objects.get(username=a_r.author))))
 
 
 	room = Room.objects.all()
