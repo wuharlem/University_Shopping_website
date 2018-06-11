@@ -154,11 +154,11 @@
                   <input id="rank" type="submit" value = "排" onclick="success()" style="background-color:#761822;color: white;font-family: 微軟正黑體;font-weight: 900;width: 100%;font-size: 18px;padding: 1%;">
                 </form>
                   <br><br>
-                  <p>{{total_num}}</p>
                   {% for ranker in ranker_list%}
                     <img class="zoomhead" src="{{ranker.1.picture.url}}" style="margin-left: -2%;width: 35px; height: 35px; border-radius: 100%;border: solid white;"
                     onclick="location.href='{%url 'profile' ranker.1 %}'">
                   {% endfor %}
+                  <p style="font-family: 微軟正黑體;font-weight: 900;color: grey;margin-top: 2%">共{{total_num}}個人正在排隊</p>
               </div>
             </div>
               <div class="col-md-12" style="background-color: ;width: 100%;left: %;color: #761822;font-family: 微軟正黑體;font-weight: 900;font-size: 18px;padding: 0%;margin-top: 3%">
@@ -329,6 +329,18 @@
        form.submit();
     }
   }
+</script>
+<script type="text/javascript">
+     function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#picture').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+        }
+      }
 </script>
 </body>
 </html>

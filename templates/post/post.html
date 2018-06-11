@@ -8,8 +8,7 @@
    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
    <script src="{% static 'account/js/jquery-2.2.3.min.js'%}"></script>
    <script src="{% static 'account/js/bootstrap.min.js'%}"></script>
-   <script src="{% static 'post/js/croppie.js'%}"></script>
-   <link rel="stylesheet" href="{% static 'post/js/croppie.css'%}"> 
+
    <script>
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -88,7 +87,7 @@
 <!--           <div style="width: 30px; height: 30px;border:0px ;background-image:url('{{profile.picture.url}}" onclick="ManageopenNav()"></div> -->
         </div>
   </div>
-        <!-- <form id = "edit_form" method="post" enctype="multipart/form-data">{% csrf_token %} -->
+       <form id = "edit_form" method="post" enctype="multipart/form-data">{% csrf_token %}
         <div class="col-md-12" style="padding: 7%;margin-top: ">
           <div style="margin-top: -5%">
             <div class="row">
@@ -96,7 +95,7 @@
               <div>
               <img id = "picture" class="img-responsive" src="{% static 'account/img/ntu_shopping_daily_necessities/demo.png'%}" class="img-fluid" alt="Responsive image" style="opacity: 0.5">
               </div>
-              <input id = "picture_edit" name="picture" style="position: absolute;color: grey;font-size: 12px;left: 35%;top:45%;font-family: 微軟正黑體;font-weight: 900;" type='file' accept="image/*" onchange="readURL(this);"required/>
+              <input id = "picture_edit" name="picture" style="position: absolute;color: grey;font-size: 12px;left: 35%;top:48%;font-family: 微軟正黑體;font-weight: 900;" type='file' accept="image/*" onchange="readURL(this);"required/>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-6" style="padding: 0px;">
@@ -239,40 +238,6 @@
 
                 reader.onload = function (e) {
                     $('#picture').attr('src', e.target.result);
-                    // $('#demo').attr('src', e.target.result);
-
-                    var basic = $('#picture').croppie({
-                      viewport: {
-                        width: 200,
-                        height: 200,
-                        type: 'rectangle'
-                      },
-                      boundary: {
-                        width: 300,
-                        height: 300
-                      }
-                    });
-
-                    basic.croppie("bind", {
-                        url:e.target.result,
-                    });
-
-                    $('#button1').on('click', 
-                      function (ev) {
-                      basic.croppie('result', 
-                      {
-                        type: 'canvas',
-                        size: 'viewport'
-                      }).then(function (resp) {
-                        // var data = resp
-                        // $('#picture_edit').val(data);
-                        // $('#edit_form').submit();
-                        $('#demo').attr('src', resp);
-                        alert(resp);
-                        $('#picture').attr('src', resp);
-                    });
-                    });
-
                 };
                 reader.readAsDataURL(input.files[0]);
         }
