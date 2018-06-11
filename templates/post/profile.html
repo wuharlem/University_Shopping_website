@@ -115,7 +115,7 @@
                   </tr>
                   <tr>
                     <th>&nbsp;&nbsp;電子郵件</th>
-                    <td style=""><input id="email" type="email" name="email" value="{{profile.user.email}}" disabled style="font-family: impact;width: 100%;border-style:none;padding: 1%;color: black" placeholder="sophie@mail.ntust.edu.tw">
+                    <td style=""><input id="email" type="email" name="email" value="{{profile.user.email}}" disabled style="font-family: impact;width: 100%;border-style:none;padding: 1%;color: black" placeholder="ntu_shopping@mail.ntust.edu.tw">
                     </td>
                   </tr>
                   <tr>
@@ -275,6 +275,18 @@
     }
 
   }
+</script>
+<script type="text/javascript">
+     function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#picture').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+        }
+      }
 </script>
 </body>
 </html>

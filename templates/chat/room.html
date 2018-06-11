@@ -158,7 +158,7 @@
         if (user == receive_user){ 
             $('<li class="l"><span class="tooltiptext">'+timestamp+'</span><span style="background:#94333D; padding: 10px; border-radius: 25px">'+message+'<span></li>').appendTo($('#chat')); 
         } else {
-            $(' <li class="r" style="margin-left: -2%"><img src=" ' + img_url + '"' + 'style="width: 50px; height: 50px; border-radius: 100%; border: solid;"><span style="background:#94333D; padding: 10px; border-radius: 25px">'+message+'</span><span class="tooltiptext">'+timestamp+'</span></li>').appendTo($('#chat')); 
+            $(' <li class="r" style="margin-left: -2%"><span style="background:#94333D; padding: 10px; border-radius: 25px">'+message+'</span><span class="tooltiptext">'+timestamp+'</span></li>').appendTo($('#chat')); 
         }
         $('.panel-body').scrollTop($('.panel-body')[0].scrollHeight);
     };
